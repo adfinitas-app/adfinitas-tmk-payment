@@ -135,14 +135,14 @@ var checkErrors = function(obj, type) {
         return false;
     return true;
 };
-
+console.log('salut!');
 app.use(express.static(__dirname + '/public'))
 
     .get('/', function(req, res) {
         console.log('bonjour');
         fs.readFile(__dirname + '/public/index.html', (err, data) => {
             if (err) throw err;
-            res.end(data);
+            res.send(data);
         });
     })
 
