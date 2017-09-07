@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var urlEncoded = bodyParser.urlencoded({ extended: false });
 var fs = require('fs');
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('postgres://postgres:satinifda@localhost:5432/paiement');
+const sequelize = new Sequelize('postgres://kxtlvtghnbpyvx:55de3be945b0c2abfb037eb79147c7df0981c260b2a8b80836a4efab12db6c25@ec2-54-75-227-173.eu-west-1.compute.amazonaws.com:5432/ded0orheosck9p');
 var Regex = require('regex');
 
 var debug = function(obj, objname) {
