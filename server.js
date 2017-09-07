@@ -106,7 +106,7 @@ var checkErrors = function(obj, type) {
 
     error += checkValidity(obj.email, /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/);
     if (type === 'mensuel') {
-        if (obj.amountMensuel !== '5' && obj.amountMensuel !== '10' && obj.amountMensuel !== '15' && obj.amountMensuel !== '20' && obj.amountMensuel !== '25')
+        if (obj.amountMensuel !== '5' && obj.amountMensuel !== '10' && obj.amountMensuel !== '15' && obj.amountMensuel !== '20' && obj.amountMensuel !== '25' && obj.amountMensuel !== '30')
             error += 1;
     }
     else if (type === 'ponctuel')
