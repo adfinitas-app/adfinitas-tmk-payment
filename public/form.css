@@ -1,0 +1,59 @@
+.field
+{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    width: 90%;
+    color: #32325d;
+    line-height: 24px;
+    font-family: '"Helvetica Neue", Helvetica, sans-serif';
+    font-size: 16px;
+}
+
+#btnMensuel, #btnPonctuel
+{
+    font-family: ' "Helvetica Neue", Helvetica, sans-serif';
+    font-size: 20px;
+    font-weight: bold;
+    height: 40px;
+    width: 150px;
+}
+
+#btnPonctuel
+{
+    color: red;
+}
+
+#payment-form
+{
+    width: 500px;
+    border: 1px solid red;
+    padding: 20px;
+}
+
+#mensuel
+{
+    display: none;
+}
+
+#ponctuel
+{
+    display: block;
+}
+
+.valid
+{
+    border: 1px solid green;
+    color: green;
+    background: url('/bon.png') top right no-repeat;
+    background-size: contain;
+}
+
+.invalid
+{
+    border: 1px solid red;
+    color: red;
+    background: url('/faux.jpeg') top right no-repeat;
+    background-size: contain;
+}
