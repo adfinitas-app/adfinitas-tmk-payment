@@ -142,7 +142,7 @@ app.use(express.static(__dirname + '/public'))
         console.log('bonjour');
         fs.readFile(__dirname + '/public/index.html', (err, data) => {
             if (err) throw err;
-            res.send(data);
+            res.end(data);
         });
     })
 
@@ -199,4 +199,4 @@ app.use(express.static(__dirname + '/public'))
             });
     })
 
-    .listen(8080);
+    .listen(process.env.PORT || 8080);
