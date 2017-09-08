@@ -103,27 +103,27 @@ var checkValidity = function(input, regex) {
 
 var checkErrors = function(obj, type) {
     var error = 0;
+    var arrPays = ['DE', 'AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'ES', 'EE', 'FI', 'FR', 'GR', 'HU', 'IS', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'MC', 'NO', 'NL', 'PL', 'PT', 'RO', 'GB', 'CZ', 'SM', 'SK', 'SI', 'CH', 'SE'];
 
     error += checkValidity(obj.email, /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/);
     if (type === 'mensuel') {
-        if (obj.amountMensuel !== '5' && obj.amountMensuel !== '10' && obj.amountMensuel !== '15' && obj.amountMensuel !== '20' && obj.amountMensuel !== '25' && obj.amountMensuel !== '30')
+        if (['5', '10', '15', '20', '25', '30'].indexOf(obj.amountMensuel) < 0)
             error += 1;
     }
     else if (type === 'ponctuel')
         error += checkValidity(obj.amount[0], /^[0-9]+(,|.[0-9]{1,2})?$/);
-    else if (obj.prenom)
+    if (obj.prenom)
         error += checkValidity(obj.prenom, /^[a-zA-Z]+(-[a-zA-Z]{1,100})?$/);
-    else if (obj.nom)
+    if (obj.nom)
         error += checkValidity(obj.nom, /^[a-zA-Z]+(-[a-zA-Z]{1,100})?$/);
-    else if (obj.civilite !== 'Mr' && obj.civilite !== 'Mme')
+    if (obj.civilite !== 'Mr' && obj.civilite !== 'Mme')
         error += 1;
-    else if (!obj.adresseUne || !obj.ville)
+    if (!obj.adresseUne || !obj.ville)
         error += 1;
-    else if (obj.tel)
+    if (obj.tel)
         error += checkValidity(obj.tel, /^(0|\+33|0033)[1-9][0-9]{8}?$/);
-    else if (obj.codePostal)
+    if (obj.codePostal)
         error += checkValidity(obj.codePostal, /^[0-9]{5,5}?$/);
-    var arrPays = ['DE', 'AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'ES', 'EE', 'FI', 'FR', 'GR', 'HU', 'IS', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'MC', 'NO', 'NL', 'PL', 'PT', 'RO', 'GB', 'CZ', 'SM', 'SK', 'SI', 'CH', 'SE'];
     if (arrPays.indexOf(obj.pays) < 0)
         error += 1;
     if (error > 0)
