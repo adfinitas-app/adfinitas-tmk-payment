@@ -123,23 +123,17 @@ var checkErrors = function(obj, type) {
         error += checkValidity(obj.tel, /^(0|\+33|0033)[1-9][0-9]{8}?$/);
     else if (obj.codePostal)
         error += checkValidity(obj.codePostal, /^[0-9]{5,5}?$/);
-    var find = false;
     var arrPays = ['DE', 'AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'ES', 'EE', 'FI', 'FR', 'GR', 'HU', 'IS', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'MC', 'NO', 'NL', 'PL', 'PT', 'RO', 'GB', 'CZ', 'SM', 'SK', 'SI', 'CH', 'SE'];
-    for (i in arrPays) {
-        if (obj.pays === arrPays[i])
-            find = true;
-    }
-    if (find === false)
+    if (arrPays.indexOf(obj.pays) < 0)
         error += 1;
     if (error > 0)
         return false;
     return true;
 };
-console.log('salut!');
+
 app.use(express.static(__dirname + '/public'))
 
     .get('/', function(req, res) {
-        console.log('bonjour');
         fs.readFile(__dirname + '/public/index.html', (err, data) => {
             if (err) throw err;
             res.end(data);
