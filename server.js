@@ -110,22 +110,29 @@ var checkErrors = function(obj, type) {
         if (['5', '10', '15', '20', '25', '30'].indexOf(obj.amountMensuel) < 0)
             error += 1;
     }
-    else if (type === 'ponctuel')
+    else if (type === 'ponctuel') {
         error += checkValidity(obj.amount[0], /^[0-9]+(,|.[0-9]{1,2})?$/);
-    if (obj.prenom)
+    }
+    if (obj.prenom) {
         error += checkValidity(obj.prenom, /^[a-zA-Z]+(-[a-zA-Z]{1,100})?$/);
-    if (obj.nom)
+    }
+    if (obj.nom) {
         error += checkValidity(obj.nom, /^[a-zA-Z]+(-[a-zA-Z]{1,100})?$/);
-    if (obj.civilite !== 'Mr' && obj.civilite !== 'Mme')
+    }
+    if (obj.civilite !== 'Mr' && obj.civilite !== 'Mme') {
         error += 1;
-    if (!obj.adresseUne || !obj.ville)
-        error += 1;
-    if (obj.tel)
+    }
+    //ville adresse
+    if (obj.tel) {
         error += checkValidity(obj.tel, /^(0|\+33|0033)[1-9][0-9]{8}?$/);
-    if (obj.codePostal)
+    }
+    if (obj.codePostal) {
         error += checkValidity(obj.codePostal, /^[0-9]{5,5}?$/);
-    if (arrPays.indexOf(obj.pays) < 0)
+    }
+    if (arrPays.indexOf(obj.pays) < 0) {
         error += 1;
+        console.log('pays error');
+    }
     if (error > 0)
         return false;
     return true;
@@ -133,48 +140,55 @@ var checkErrors = function(obj, type) {
 
 app.use(express.static(__dirname + '/public'))
 
-    .get('/', function(req, res) {
+    .get('/', function (req, res) {
         fs.readFile(__dirname + '/public/index.html', (err, data) => {
-            if (err) throw err;
+            if (err) {
+                res.writeHead(500);
+                return res.end('Error loading index.html');
+            }
+            res.writeHead(200);
             res.end(data);
         });
     })
 
-    .post('/ponctuel', urlEncoded, function(req, res) {
+    .post('/ponctuel', urlEncoded, function (req, res) {
         debug(req.body, 'req.body');
         req.body.amount[0] = req.body.amount[0] === 'next' ? req.body.amount[1] : req.body.amount[0];
         if (checkErrors(req.body, 'ponctuel') === false) {
             console.log('Refused by server');
-            res.redirect('/');
+            var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: red;text-align: center;">Votre paiement à été refusé.</p>');
+            res.redirect('/?valid=' + string);
             return;
         }
         return stripe.charges.create({
             source: req.body.stripeSource,
             amount: parseInt(req.body.amount[0] * 100),
             currency: 'eur'
-        }).then(function(charge) {
+        }).then(function (charge) {
             debug(charge, 'Charge');
             console.log('new charge created without customer');
             addTrans(req.body.civilite, req.body.nom, req.body.prenom, req.body.amount[0], 'ponctuel', req.body.email, req.body.tel, makeAdress(req.body));
-            res.redirect('/');
-        }).catch(function(err) {
+            var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: green;text-align: center;">Votre paiement à été accepté.</p>');
+            res.redirect('/?valid=' + string);
+        }).catch(function (err) {
             debug(err, 'Error');
             res.redirect('/');
         });
     })
 
-    .post('/mensuel', urlEncoded, function(req, res) {
+    .post('/mensuel', urlEncoded, function (req, res) {
         debug(req.body, 'req.body');
         if (checkErrors(req.body, 'mensuel') === false) {
             console.log('Refused by server');
-            res.redirect('/');
+            var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: red;text-align: center;">Votre paiement mensuel à été refusé.</p>');
+            res.redirect('/?valid=' + string);
             return;
         }
         return stripe.customers.create({
             email: req.body.email,
             source: req.body.stripeSource,
         })
-            .then(function(customer) {
+            .then(function (customer) {
                 stripe.subscriptions.create({
                     customer: customer.id,
                     items: [
@@ -185,12 +199,13 @@ app.use(express.static(__dirname + '/public'))
                 });
                 addTrans(req.body.civilite, req.body.nom, req.body.prenom, req.body.amountMensuel, 'mensuel', req.body.email, req.body.tel, makeAdress(req.body));
                 console.log('New customer successfully subscribed to plan');
-                res.redirect('/');
-            }).catch(function(err) {
+                var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: green;text-align: center;">Votre paiement mensuel à été accepté.</p>');
+                res.redirect('/?valid=' + string);
+            }).catch(function (err) {
                 debug(err, 'Error');
                 console.log(err);
                 res.redirect('/');
             });
     })
 
-    .listen(process.env.PORT || 8080);
+.listen(process.env.PORT || 8080);

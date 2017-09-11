@@ -46,13 +46,14 @@
     <select name="pays" class="field"><option value="DE">Allemagne</option><option value="AT">Autriche</option><option value="BE">Belgique</option><option value="BG">Bulgarie</option><option value="CY">Chypre</option><option value="HR">Croatie</option><option value="DK">Danemark</option><option value="ES">Espagne</option><option value="EE">Estonie</option><option value="FI">Finlande</option><option selected="selected" value="FR">France</option><option value="GR">Grèce</option><option value="HU">Hongrie</option><option value="IE">Irlande</option><option value="IS">Islande</option><option value="IT">Italie</option><option value="LV">Lettonie</option><option value="LI">Liechtenstein</option><option value="LT">Lituanie</option><option value="LU">Luxembourg</option><option value="MT">Malte</option><option value="MC">Monaco</option><option value="NO">Norvège</option><option value="NL">Pays-Bas</option><option value="PL">Pologne</option><option value="PT">Portugal</option><option value="RO">Roumanie</option><option value="GB">Royaume-Uni</option><option value="CZ">République tchèque</option><option value="SM">Saint-Marin</option><option value="SK">Slovaquie</option><option value="SI">Slovénie</option><option value="CH">Suisse</option><option value="SE">Suède</option></select>
     <input type="tel" placeholder="Numéro de téléphone (optionnel)" class="field" id="tel" name="tel"><br/>
     <div id="formError"></div>
-    <button type="submit" style="margin-top: 10px;margin-left: 10px;padding: 10px;">Submit Payment</button>
+    <button type="submit" style="margin-top: 10px;margin-left: 10px;margin-bottom: 10px;padding: 10px;">Submit Payment</button>
 </form>
 <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
 <script src="https://js.stripe.com/v3/"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script src="/submitEvent.js"></script>
 <script src="/clickEvent.js"></script>
 <script src="/checkValidityEvent.js"></script>

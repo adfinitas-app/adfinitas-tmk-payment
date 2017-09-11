@@ -33,6 +33,20 @@ var switchFormEvent = function() {
     mensuelClickEvent(ponctuelDiv, mensuelDiv, form);
 };
 
+var extractUrlParams = function(){
+    var t = document.location.search.substring(1).split('&'); var f = [];
+    for (var i=0; i<t.length; i++){
+        var x = t[ i ].split('=');
+        f[x[0]]=decodeURIComponent(x[1]);
+    }
+    return f;
+};
+var p = extractUrlParams();
+if ('valid' in p)
+{
+    $('#payment-form').append(decodeURIComponent(p['valid']));
+    window.history.pushState("", "", '/');
+}
 fixOtherAmount();
 var card = createCard();
 switchFormEvent();
