@@ -11,6 +11,15 @@
         woopra.config({
             domain: 'adfinitas.fr'
         });
+        var p = extractUrlParams();
+		if ('email' in p) {
+			if ('lastname' in p && 'firstname' in p) {
+				woopra.identify({
+					email: p['email'],
+					name: p['firstname'] + ' ' + p['lastname']
+				});
+			} else {woopra.identify({email: p['email']})}
+		}
         woopra.track();
     </script>
 </head>
