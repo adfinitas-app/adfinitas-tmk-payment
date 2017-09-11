@@ -172,7 +172,8 @@ app.use(express.static(__dirname + '/public'))
             res.redirect('/?valid=' + string);
         }).catch(function (err) {
             debug(err, 'Error');
-            res.redirect('/');
+            var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: red;text-align: center;">Votre paiement à été refusé.</p>');
+            res.redirect('/?valid=' + string);
         });
     })
 
@@ -204,7 +205,8 @@ app.use(express.static(__dirname + '/public'))
             }).catch(function (err) {
                 debug(err, 'Error');
                 console.log(err);
-                res.redirect('/');
+                var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: red;text-align: center;">Votre paiement mensuel à été refusé.</p>');
+                res.redirect('/?valid=' + string);
             });
     })
 
