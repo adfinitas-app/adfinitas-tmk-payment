@@ -101,43 +101,6 @@ var checkValidity = function(input, regex) {
         return true;
 };
 
-var checkErrors = function(obj, type) {
-    var error = 0;
-    var arrPays = ['DE', 'AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'ES', 'EE', 'FI', 'FR', 'GR', 'HU', 'IS', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'MC', 'NO', 'NL', 'PL', 'PT', 'RO', 'GB', 'CZ', 'SM', 'SK', 'SI', 'CH', 'SE'];
-
-    error += checkValidity(obj.email, /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/);
-    if (type === 'mensuel') {
-        if (['5', '10', '15', '20', '25', '30'].indexOf(obj.amountMensuel) < 0)
-            error += 1;
-    }
-    else if (type === 'ponctuel') {
-        error += checkValidity(obj.amount[0], /^[0-9]+(,|.[0-9]{1,2})?$/);
-    }
-    if (obj.prenom) {
-        error += checkValidity(obj.prenom, /^[a-zA-Z]+(-[a-zA-Z]{1,100})?$/);
-    }
-    if (obj.nom) {
-        error += checkValidity(obj.nom, /^[a-zA-Z]+(-[a-zA-Z]{1,100})?$/);
-    }
-    if (obj.civilite !== 'Mr' && obj.civilite !== 'Mme') {
-        error += 1;
-    }
-    //ville adresse
-    if (obj.tel) {
-        error += checkValidity(obj.tel, /^(0|\+33|0033)[1-9][0-9]{8}?$/);
-    }
-    if (obj.codePostal) {
-        error += checkValidity(obj.codePostal, /^[0-9]{5,5}?$/);
-    }
-    if (arrPays.indexOf(obj.pays) < 0) {
-        error += 1;
-        console.log('pays error');
-    }
-    if (error > 0)
-        return false;
-    return true;
-};
-
 var checkError = function (data) {
     if (!data || !data.amount || !data.email || !data.civilite || !data.prenom || !data.nom || !data.stripeSource || !data.paymentType)
         return (84);
