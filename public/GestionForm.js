@@ -195,7 +195,7 @@ var InputValidationModel = Backbone.Model.extend({
             required: true,
             msg: 'Veuillez indiquer une civilité.'
         }, {
-            oneOf: ['Mr', 'Mme', 'none'],
+            oneOf: ['Mr', 'Mme', 'autre'],
             msg: 'Veuillez indiquez une civlité valide.'
         }],
         prenom: [{
