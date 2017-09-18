@@ -202,14 +202,14 @@ var InputValidationModel = Backbone.Model.extend({
             required: true,
             msg: 'Veuillez indiquer votre prénom.'
         }, {
-            pattern: /^[a-zA-Z]+(-[a-zA-Z]{1,128})?$/,
+            pattern: /^[a-zA-Z ]+(-[a-zA-Z ]{1,128})?$/,
             msg: 'Veuillez entrez un prénom composé d\'uniquement 1 à 128 lettres.'
         }],
         nom: [{
             required: true,
             msg: 'Veuillez indiquer votre nom.'
         }, {
-            pattern: /^[a-zA-Z]+(-[a-zA-Z]{1,128})?$/,
+            pattern: /^[a-zA-Z ]+(-[a-zA-Z ]{1,128})?$/,
             msg: 'Veuillez entrez un nom composé d\'uniquement 1 à 128 lettres.'
         }],
         iban: {

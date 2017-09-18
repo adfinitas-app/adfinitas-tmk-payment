@@ -109,8 +109,8 @@ var checkError = function (data) {
         [data.amount, /^[0-9]+(,|.[0-9]{1,2})?$/, 'montant'],
         [data.email, /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/, 'email'],
         [data.civilite, /^(Mr|Mme|autre)?$/, 'civilite'],
-        [data.prenom, /^[a-zA-Z]+(-[a-zA-Z]{1,120})?$/, 'prenom'],
-        [data.nom, /^[a-zA-Z]+(-[a-zA-Z]{1,120})?$/, 'nom'],
+        [data.prenom, /^[a-zA-Z ]+(-[a-zA-Z ]{1,120})?$/, 'prenom'],
+        [data.nom, /^[a-zA-Z ]+(-[a-zA-Z ]{1,120})?$/, 'nom'],
         [data.paymentType, /^(creditCard|sepa)?$/, 'type de paiement'],
     ];
     if (data.tel)
