@@ -3,9 +3,9 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var urlEncoded = bodyParser.urlencoded({ extended: false });
-var fs = require('fs');
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('postgres://kxtlvtghnbpyvx:55de3be945b0c2abfb037eb79147c7df0981c260b2a8b80836a4efab12db6c25@ec2-54-75-227-173.eu-west-1.compute.amazonaws.com:5432/ded0orheosck9p');
+//const sequelize = new Sequelize('postgres://postgres:satinifda@localhost:5432/paiement');
 var Regex = require('regex');
 
 var debug = function(obj, objname) {
@@ -13,7 +13,7 @@ var debug = function(obj, objname) {
     for (i in obj){console.log(i + ' => ' + obj[i]);}
 };
 
-var addTrans = function(civilite, nom, prenom, montant, type, email, tel, adresse) {
+var addTransaction = function(civilite, nom, prenom, montant, type, email, tel, adresse) {
     sequelize
         .authenticate()
         .then(() => {
@@ -62,7 +62,7 @@ var addTrans = function(civilite, nom, prenom, montant, type, email, tel, adress
                     freezeTableName: true
                 }
             );
-            transaction.sync({})
+            transaction.sync({force: true})
                 .then(() => {
                     console.log('Synchronisation réussie !');
                     transaction
@@ -79,10 +79,10 @@ var addTrans = function(civilite, nom, prenom, montant, type, email, tel, adress
                         .save()
                 })
                 .then(anotherTask => {
-
+                    console.log('Correctly added transaction to database.');
                 })
                 .catch(error => {
-                    console.log('Error: ' + error);
+                    console.log('Erreur de synchronisation: ' + error);
                 });
         })
         .catch(err => {
@@ -138,76 +138,108 @@ var checkErrors = function(obj, type) {
     return true;
 };
 
+var checkError = function (data) {
+    if (!data || !data.amount || !data.email || !data.civilite || !data.prenom || !data.nom || !data.stripeSource || !data.paymentType)
+        return (84);
+    var stringError = '';
+    var array = [
+        [data.amount, /^[0-9]+(,|.[0-9]{1,2})?$/, 'montant'],
+        [data.email, /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/, 'email'],
+        [data.civilite, /^(Mr|Mme|autre)?$/, 'civilite'],
+        [data.prenom, /^[a-zA-Z]+(-[a-zA-Z]{1,120})?$/, 'prenom'],
+        [data.nom, /^[a-zA-Z]+(-[a-zA-Z]{1,120})?$/, 'nom'],
+        [data.paymentType, /^(creditCard|sepa)?$/, 'type de paiement'],
+    ];
+    if (data.tel)
+        array.push([data.tel, /^(0|\+33|0033)[1-9][0-9]{8}?$/, 'tel']);
+    if (data.paymentType === 'sepa') {
+        if (!data.adresseUne || !data.ville || !data.codePostal || !data.pays)
+            return (84);
+        array.push([data.codePostal, /^[0-9]{5,5}?$/, 'code postal']);
+        array[0][1] = /^(5|10|15|20|25|30)?$/; // change la regex
+        if (data.adresseUne.trim().length === 0)
+            stringError += "'" + 'adresseUne' + "' ; ";
+        if (data.ville.trim().length === 0)
+            stringError += "'" + 'ville' + "' ; ";
+    }
+    for (i = 0; i < array.length; i++) {
+        if (checkValidity(array[i][0], array[i][1]) === true) { // true = erreur / false = correcte
+            stringError += "'" + array[i][2] + "' ; ";
+        }
+    }
+    console.log('Erreur avec : ' + stringError + '.');
+    if (stringError !== '')
+        return (84);
+    return (0);
+};
+
 app.use(express.static(__dirname + '/public'))
 
     .get('/', function (req, res) {
-        fs.readFile(__dirname + '/public/index.html', (err, data) => {
-            if (err) {
-                res.writeHead(500);
-                return res.end('Error loading index.html');
-            }
-            res.writeHead(200);
-            res.end(data);
-        });
+        res.end('bonjour');
     })
 
-    .post('/ponctuel', urlEncoded, function (req, res) {
-        debug(req.body, 'req.body');
-        req.body.amount[0] = req.body.amount[0] === 'next' ? req.body.amount[1] : req.body.amount[0];
-        if (checkErrors(req.body, 'ponctuel') === false) {
-            console.log('Refused by server');
-            var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: red;text-align: center;">Votre paiement à été refusé.</p>');
-            res.redirect('/?valid=' + string);
-            return;
-        }
-        return stripe.charges.create({
-            source: req.body.stripeSource,
-            amount: parseInt(req.body.amount[0] * 100),
-            currency: 'eur'
-        }).then(function (charge) {
-            debug(charge, 'Charge');
-            console.log('new charge created without customer');
-            addTrans(req.body.civilite, req.body.nom, req.body.prenom, req.body.amount[0], 'ponctuel', req.body.email, req.body.tel, makeAdress(req.body));
-            var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: green;text-align: center;">Votre paiement à été accepté.</p>');
-            res.redirect('/?valid=' + string);
-        }).catch(function (err) {
-            debug(err, 'Error');
-            var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: red;text-align: center;">Votre paiement à été refusé.</p>');
-            res.redirect('/?valid=' + string);
-        });
+    .get('/accepte', function (req, res) {
+
+        res.header("Content-Type", "text/html;charset=utf-8");
+        res.end('Paiement <span style="color: green;">accepté</span> !');
     })
 
-    .post('/mensuel', urlEncoded, function (req, res) {
+    .get('/refuse', function (req, res) {
+        res.header("Content-Type", "text/html;charset=utf-8");
+        res.end('Paiement <span style="color: red;">refusé</span> !');
+    })
+
+    .post('/', urlEncoded, function (req, res) {
         debug(req.body, 'req.body');
-        if (checkErrors(req.body, 'mensuel') === false) {
-            console.log('Refused by server');
-            var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: red;text-align: center;">Votre paiement mensuel à été refusé.</p>');
-            res.redirect('/?valid=' + string);
-            return;
+        if (checkError(req.body) === 84) {
+            console.log('Refused by server.');
+            res.redirect('/refuse');
+            return (84);
         }
-        return stripe.customers.create({
-            email: req.body.email,
-            source: req.body.stripeSource,
-        })
-            .then(function (customer) {
-                stripe.subscriptions.create({
-                    customer: customer.id,
-                    items: [
-                        {
-                            plan: req.body.amountMensuel + '_GIFT',
-                        },
-                    ],
+        else if (req.body.paymentType === 'creditCard') {
+            return stripe.charges.create({
+                source: req.body.stripeSource,
+                amount: parseInt(req.body.amount * 100),
+                currency: 'eur'
+            })
+                .then(function () {
+                    addTransaction(req.body.civilite, req.body.nom, req.body.prenom, req.body.amount, 'creditCard', req.body.email, req.body.tel, makeAdress(req.body))
+                })
+                .then(function () {
+                    console.log('terminé');
+                    res.redirect('/accepte');
+                })
+                .catch(function (err) {
+                    debug(err, 'Error');
+                    res.redirect('/refuse');
                 });
-                addTrans(req.body.civilite, req.body.nom, req.body.prenom, req.body.amountMensuel, 'mensuel', req.body.email, req.body.tel, makeAdress(req.body));
-                console.log('New customer successfully subscribed to plan');
-                var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: green;text-align: center;">Votre paiement mensuel à été accepté.</p>');
-                res.redirect('/?valid=' + string);
-            }).catch(function (err) {
-                debug(err, 'Error');
-                console.log(err);
-                var string = encodeURIComponent('<p style="font-size: 20px; font-family: Arial, serif; font-weight: bold; margin: auto; color: red;text-align: center;">Votre paiement mensuel à été refusé.</p>');
-                res.redirect('/?valid=' + string);
-            });
+        }
+        else if (req.body.paymentType === 'sepa') {
+            return stripe.customers.create({
+                email: req.body.email,
+                source: req.body.stripeSource,
+            })
+                .then(function (customer) {
+                    stripe.subscriptions.create({
+                        customer: customer.id,
+                        items: [
+                            {
+                                plan: req.body.amount + '_GIFT',
+                            },
+                        ],
+                    });
+                })
+                .then(function () {
+                    addTransaction(req.body.civilite, req.body.nom, req.body.prenom, req.body.amount, 'sepa', req.body.email, req.body.tel, makeAdress(req.body));
+                    console.log('Paiment sepa réussi !');
+                    res.redirect('/accepte');
+                })
+                .catch(function (err) {
+                    debug(err, 'Error');
+                    res.redirect('/refuse');
+                });
+        }
     })
 
 .listen(process.env.PORT || 8080);

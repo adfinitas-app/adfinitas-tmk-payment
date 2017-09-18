@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="form.css">
+    <script>
+        function extractUrlParams(){
+			var t = document.location.search.substring(1).split('&'); var f = [];
+			for (var i=0; i<t.length; i++){
+				var x = t[ i ].split('=');
+				f[x[0]]=decodeURIComponent(x[1]);
+			}
+			return f;
+		};
+        (function(){
+            var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identify","visit","push","call","trackForm","trackClick"],c=function(){var t,i=this;for(i._e=[],t=0;r.length>t;t++)(function(t){i[t]=function(){return i._e.push([t].concat(Array.prototype.slice.call(arguments,0))),i}})(r[t])};for(n._w=n._w||{},t=0;a.length>t;t++)n._w[a[t]]=n[a[t]]=n[a[t]]||new c;i=o.createElement(s),i.async=1,i.src="//static.woopra.com/js/w.js",e=o.getElementsByTagName(s)[0],e.parentNode.insertBefore(i,e)
+        })("woopra");
+        woopra.config({
+            domain: 'adfinitas.fr'
+        });
+        var p = extractUrlParams();
+		if ('email' in p) {
+			if ('lastname' in p && 'firstname' in p) {
+				woopra.identify({
+					email: p['email'],
+					name: p['firstname'] + ' ' + p['lastname']
+				});
+			} else {woopra.identify({email: p['email']})}
+		}
+        woopra.track();
+    </script>
+</head>
+<body>
+
+<button id="btnPonctuel">Don ponctuel</button>
+<button id="btnMensuel">Don mensuel</button>
+
+<form action="/ponctuel" method="post" id="payment-form">
+    <%- @someVar %>
+    <div id="ponctuel">
+        <p>Choisissez le montant de votre don:</p>
+        <label for="amount-1"><input type="radio" class="definedAmount" name="amount" id="amount-1" value="5" required>5 €</label>
+        <label for="amount-2"><input type="radio" class="definedAmount" name="amount" id="amount-2" value="10" checked>10 €<br/></label>
+        <label for="amount-3"><input type="radio" class="definedAmount" name="amount" id="amount-3" value="15">15 €</label>
+        <label for="amount-4"><input type="radio" class="definedAmount" name="amount" id="amount-4" value="20">20 €<br/></label>
+        <label for="amount-5"><input type="radio" name="amount" id="amount-5" value="next"><input type="text" placeholder="Autre montant" name="amount" class="field" id="otherAmount"></label><br/>
+    </div>
+    <div id="mensuel">
+        <p>Choisissez le montant de votre don mensuel:</p>
+        <select name="amountMensuel" class="field" required>
+            <option value="5">5 €</option>
+            <option value="10">10 €</option>
+            <option value="15">15 €</option>
+            <option value="20">20 €</option>
+            <option value="25">25 €</option>
+            <option value="30">30 €</option>
+        </select>
+    </div>
+    <input type="email" placeholder="Adresse e-mail" class="field" name="email" id="email">
+    <select name="civilite" class="field">
+        <option value="Mr">Monsieur</option>
+        <option value="Mme">Madame</option>
+    </select>
+    <input type="text" placeholder="Prénom" class="field" name="prenom" id="prenom">
+    <input type="text" placeholder="Nom" class="field" name="nom" id="nom">
+    <div id="cardElement"></div>
+    <div id="cardError"></div>
+    <input type="text" name="adresseUne" placeholder="Adresse" class="field">
+    <input type="text" name="adresseDeux" placeholder="Adresse (suite) - optionnel" class="field">
+    <input type="text" name="ville" placeholder="Ville" class="field">
+    <input type="text" name="codePostal" id="codePostal" placeholder="Code postal" class="field">
+    <select name="pays" class="field"><option value="DE">Allemagne</option><option value="AT">Autriche</option><option value="BE">Belgique</option><option value="BG">Bulgarie</option><option value="CY">Chypre</option><option value="HR">Croatie</option><option value="DK">Danemark</option><option value="ES">Espagne</option><option value="EE">Estonie</option><option value="FI">Finlande</option><option selected="selected" value="FR">France</option><option value="GR">Grèce</option><option value="HU">Hongrie</option><option value="IE">Irlande</option><option value="IS">Islande</option><option value="IT">Italie</option><option value="LV">Lettonie</option><option value="LI">Liechtenstein</option><option value="LT">Lituanie</option><option value="LU">Luxembourg</option><option value="MT">Malte</option><option value="MC">Monaco</option><option value="NO">Norvège</option><option value="NL">Pays-Bas</option><option value="PL">Pologne</option><option value="PT">Portugal</option><option value="RO">Roumanie</option><option value="GB">Royaume-Uni</option><option value="CZ">République tchèque</option><option value="SM">Saint-Marin</option><option value="SK">Slovaquie</option><option value="SI">Slovénie</option><option value="CH">Suisse</option><option value="SE">Suède</option></select>
+    <input type="tel" placeholder="Numéro de téléphone (optionnel)" class="field" id="tel" name="tel"><br/>
+    <div id="formError"></div>
+    <button type="submit" style="margin-top: 10px;margin-left: 10px;margin-bottom: 10px;padding: 10px;">Submit Payment</button>
+</form>
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="/submitEvent.js"></script>
+<!--<script src="/clickEvent.js"></script>-->
+<script src="/checkValidityEvent.js"></script>
+<script src="/GestionForm.js"></script>
+</body>
+</html>

@@ -39,4 +39,25 @@ var checkValidityEvent = function() {
     $('#codePostal').blur(function () {
         checkValidity('codePostal', /^[0-9]{5,5}?$/, 'blur');
     });
+
+    $('#adresseUne').blur(function () {
+        if ($(this).val() !== '')
+            $(this).addClass('valid');
+        else
+            $(this).removeClass('valid').addClass('field');
+    });
+
+    $('#adresseDeux').blur(function () {
+        if ($(this).val() !== '')
+            $(this).addClass('valid');
+        else
+            $(this).removeClass('valid').addClass('field');
+    });
+
+    $('#ville').blur(function () {
+        if ($(this).val() !== '')
+            $(this).addClass('valid');
+        else
+            $(this).removeClass('valid').addClass('field');
+    });
 };

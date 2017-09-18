@@ -1,29 +1,33 @@
-var ponctuelClickEvent = function(ponctuelDiv, mensuelDiv, form) {
+var postIt = function(type) {
+    var form = document.createElement('form');
+    form.setAttribute('method', 'post');
+    form.setAttribute('action', '/');
+    form.style.display = 'hidden';
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'type');
+    hiddenInput.setAttribute('value', type);
+    form.appendChild(hiddenInput);
+    document.body.appendChild(form);
+    form.submit();
+};
+
+var ponctuelClickEvent = function() {
     $('#btnPonctuel').click(function(event) {
         event.preventDefault();
+        postIt('ponctuel', form);
         boolType = true;
-        ponctuelDiv.css('display', 'block');
-        mensuelDiv.css('display', 'none');
-        form.attr('action', '/ponctuel');
-        $('.valid').removeClass('valid').addClass('field');
-        $('.invalid').removeClass('invalid').addClass('field');
         $(this).css('color', 'red');
         $('#btnMensuel').css('color', 'black');
-        form.trigger('reset');
     });
 };
 
-var mensuelClickEvent = function(ponctuelDiv, mensuelDiv, form) {
+var mensuelClickEvent = function() {
     $('#btnMensuel').click(function(event) {
         event.preventDefault();
+        postIt('mensuel', form);
         boolType = false;
-        ponctuelDiv.css('display', 'none');
-        mensuelDiv.css('display', 'block');
-        form.attr('action', '/mensuel');
-        $('.valid').removeClass('valid').addClass('field');
-        $('.invalid').removeClass('invalid').addClass('field');
         $(this).css('color', 'red');
         $('#btnPonctuel').css('color', 'black');
-        form.trigger('reset');
     });
 };

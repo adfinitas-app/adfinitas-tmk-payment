@@ -1,59 +1,44 @@
-.field
-{
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 5px;
-    margin: 5px;
-    width: 90%;
-    color: #32325d;
-    line-height: 24px;
-    font-family: '"Helvetica Neue", Helvetica, sans-serif';
-    font-size: 16px;
+body {
+    font-family: Helvetica Neue, Helvetica, Arial;
 }
 
-#btnMensuel, #btnPonctuel
+a.paymentOption:hover
 {
-    font-family: ' "Helvetica Neue", Helvetica, sans-serif';
-    font-size: 20px;
-    font-weight: bold;
-    height: 40px;
-    width: 150px;
+    color: red !important;
 }
 
-#btnPonctuel
+a.paymentOption
 {
-    color: red;
+    display: inline-block;
+    color: inherit;
+    padding: 8px 0;
 }
 
-#payment-form
+#paymentForm
 {
-    width: 500px;
-    border: 1px solid red;
+    border: 1px solid lightgray;
     padding: 20px;
+    background-color: #f6f4f6;
 }
 
-#mensuel
-{
+.help-block {
     display: none;
 }
 
-#ponctuel
-{
-    display: block;
+.StripeElement--invalid, .StripeElement--empty, .StripeElement--focus {
+    margin-bottom: 0 !important;
 }
 
-.valid
+.StripeElement--focus
 {
-    border: 1px solid green;
-    color: green;
-    background: url('/bon.png') top right no-repeat;
-    background-size: contain;
+    outline: 0 !important;
+    border: 1px solid #8a8a8a !important;
+    background-color: #fefefe !important;
+    box-shadow: 0 0 5px #cacaca !important;
+    transition: box-shadow .5s,border-color .25s ease-in-out !important;
+    color :red !important;
 }
 
-.invalid
-{
-    border: 1px solid red;
-    color: red;
-    background: url('/faux.jpeg') top right no-repeat;
-    background-size: contain;
+button {
+    color: white;
 }
