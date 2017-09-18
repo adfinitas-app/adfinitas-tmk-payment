@@ -107,7 +107,7 @@ var checkError = function (data) {
     var stringError = '';
     var array = [
         [data.amount, /^[0-9]+(,|.[0-9]{1,2})?$/, 'montant'],
-        [data.email, /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/, 'email'],
+        [data.email, /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'email'],
         [data.civilite, /^(Mr|Mme|autre)?$/, 'civilite'],
         [data.prenom, /^[a-zA-Z ]+(-[a-zA-Z ]{1,120})?$/, 'prenom'],
         [data.nom, /^[a-zA-Z ]+(-[a-zA-Z ]{1,120})?$/, 'nom'],
