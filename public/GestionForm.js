@@ -101,6 +101,7 @@ var PaymentTypeView = Backbone.View.extend({
                 'font-weight': 'normal'
             });
             $('option#autre').show();
+            $('#textSepa').remove();
         }
         else if (this.model.get('paymentType') === 'sepa') {
             $('#btnMensuel').css({
@@ -114,6 +115,7 @@ var PaymentTypeView = Backbone.View.extend({
                 'font-weight': 'normal'
             });
             $('option#autre').hide();
+            $('#beforeText').after('<p style="font-size: .8rem;color: #737273" id="textSepa">En fournissant les coordonnées de votre Numéro de compte bancaire international (« IBAN ») et en confirmant ce paiement, vous autorisez (A) {{ NOM SITE}}, Inc et aussi Stripe, notre prestataire de paiement, à envoyer des instructions à votre banque pour débiter votre compte, et (B) votre banque à débiter votre compte conformément à ces instructions. Vous bénéficiez d’un droit à remboursement par votre banque selon les conditions décrites dans la convention que vous avez passée avec elle. Toute demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte.\n</p>');
         }
     },
 
@@ -345,7 +347,7 @@ var InputValidationView = Backbone.View.extend({
                         name: [$('#prenom').val(), $('#nom').val()].join(' '),
                     },
                 }).then(function(result) {
-                    stripeSourceHandler(result, 'iban', 'sepa')
+                    stripeSourceHandler(result, 'iban', 'sepa');
                 });
             }
         }
@@ -356,6 +358,8 @@ var InputValidationView = Backbone.View.extend({
         return Backbone.View.prototype.remove.apply(this, arguments);
     }
 });
+
+var text
 
 $(document).ready(function () {
     var paymentType = new PaymentType();
