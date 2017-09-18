@@ -267,7 +267,7 @@ $.fn.serializeObject = function () {
 _.extend(Backbone.Validation.callbacks, {
     valid: function (view, attr, selector) {
         var $el = view.$('[name=' + attr + ']').last();
-        if ((attr === 'tel' || attr === 'adresseDeux') && $el.val() === '')
+        if (attr === 'iban' || (attr === 'tel' || attr === 'adresseDeux') && $el.val() === '')
             return ;
         if (attr === 'amount' && view.$('[name="otherAmount"]').length > 0)
             $el = view.$('[name="otherAmount"]').last();
