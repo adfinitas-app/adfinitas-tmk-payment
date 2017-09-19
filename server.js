@@ -163,15 +163,15 @@ app.use(express.static(__dirname + '/public'))
             return (84);
         }
         else if (req.body.paymentType === 'creditCard') {
-            stripe.accounts.create({
-                country: "FR",
-                type: "custom",
-                email: 'tech@adfinitas.fr',
-
-            }).then(function(acct) {
-                debug(acct, 'account');
-                // asynchronously called
-            });
+            // stripe.accounts.create({
+            //     country: "FR",
+            //     type: "custom",
+            //     email: 'tech@adfinitas.fr',
+            //
+            // }).then(function(acct) {
+            //     debug(acct, 'account');
+            //     // asynchronously called
+            // });
             return stripe.charges.create({
                 source: req.body.stripeSource,
                 amount: parseInt(req.body.amount * 100),
