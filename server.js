@@ -173,10 +173,18 @@ app.use(express.static(__dirname + '/public'))
                     code: req.query.code,
                     client_secret: 'sk_test_laxl5BP0TNodFtPrFaBsrKZm'
                 }
-            }, function(err, r, body) {
-                var accessToken = JSON.parse(body).access_token;
-                debug(body, 'body ?');
-                debug(r, 'r ????');
+            }, function(err, r, response) {
+                var accessToken = JSON.parse(response).access_token;
+                debug(response, 'reponse');
+                stripe.charges.create({
+                    amount: parseInt(req.body.amount * 100),
+                    currency: 'eur',
+                    source: req.body.stripeSource,
+                }, {
+                    stripe_account: response.stripe_user_id,
+                }).then(function(charge) {
+                    // asynchronously called
+                });
             });
             // stripe.accounts.create({
             //     country: "FR",
