@@ -175,11 +175,12 @@ app.use(express.static(__dirname + '/public'))
                 }
             }, function(err, r, response) {
                 var accessToken = JSON.parse(response).access_token;
+                console.log('ACCESS TOKEN:' + accessToken);
                 debug(response, 'reponse');
                 stripe.charges.create({
                     amount: parseInt(req.body.amount * 100),
                     currency: 'eur',
-                    source: req.body.stripeSource,
+                    source: response.stripe_user_id,
                 }, {
                     stripe_account: response.stripe_user_id,
                 }).then(function(charge) {
