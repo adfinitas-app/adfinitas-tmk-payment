@@ -1,6 +1,7 @@
 var stripe = require("stripe")("sk_test_laxl5BP0TNodFtPrFaBsrKZm");
 var express = require('express');
 var app = express();
+var request = require('request');
 var bodyParser = require('body-parser');
 var urlEncoded = bodyParser.urlencoded({ extended: false });
 const Sequelize = require('sequelize');
@@ -163,6 +164,18 @@ app.use(express.static(__dirname + '/public'))
             return (84);
         }
         else if (req.body.paymentType === 'creditCard') {
+            request.post({
+                url: TOKEN_URI,
+                form: {
+                    grant_type: 'authorization_code',
+                    client_id: 'ca_BNbQ2Q1Lml6ynQtmAckLjRZzvHtW9mkq',
+                    code: req.query.code,
+                    client_secret: 'sk_test_laxl5BP0TNodFtPrFaBsrKZm'
+                }
+            }, function(err, r, body) {
+                var accessToken = JSON.parse(body).access_token;
+                console.log('accesTokne: ' + accessToken);
+            });
             // stripe.accounts.create({
             //     country: "FR",
             //     type: "custom",
