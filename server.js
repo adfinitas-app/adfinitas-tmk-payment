@@ -185,6 +185,7 @@ app.use(express.static(__dirname + '/public'))
                 }).then(function(charge) {
                     // asynchronously called
                     debug(charge, 'charge')
+                    res.redirect('/accepte');
                 });
             });
             // stripe.accounts.create({
