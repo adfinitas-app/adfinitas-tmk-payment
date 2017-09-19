@@ -156,7 +156,7 @@ app.use(express.static(__dirname + '/public'))
         res.end('Paiement <span style="color: red;">refusé</span> !');
     })
 
-    .post('/', urlEncoded, function (req, res) {
+    .post('/oauth/callback', urlEncoded, function (req, res) {
         debug(req.body, 'req.body');
         if (checkError(req.body) === 84) {
             console.log('Refused by server.');
