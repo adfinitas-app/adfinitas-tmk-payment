@@ -184,6 +184,7 @@ app.use(express.static(__dirname + '/public'))
                     stripe_account: response.stripe_user_id,
                 }).then(function(charge) {
                     // asynchronously called
+                    debug(charge, 'charge')
                 });
             });
             // stripe.accounts.create({
@@ -195,22 +196,22 @@ app.use(express.static(__dirname + '/public'))
             //     debug(acct, 'account');
             //     // asynchronously called
             // });
-            return stripe.charges.create({
-                source: req.body.stripeSource,
-                amount: parseInt(req.body.amount * 100),
-                currency: 'eur'
-            })
-                .then(function () {
-                    addTransaction(req.body.civilite, req.body.nom, req.body.prenom, req.body.amount, 'creditCard', req.body.email, req.body.tel, makeAdress(req.body))
-                })
-                .then(function () {
-                    console.log('terminé');
-                    res.redirect('/accepte');
-                })
-                .catch(function (err) {
-                    debug(err, 'Error');
-                    res.redirect('/refuse');
-                });
+            // return stripe.charges.create({
+            //     source: req.body.stripeSource,
+            //     amount: parseInt(req.body.amount * 100),
+            //     currency: 'eur'
+            // })
+            //     .then(function () {
+            //         addTransaction(req.body.civilite, req.body.nom, req.body.prenom, req.body.amount, 'creditCard', req.body.email, req.body.tel, makeAdress(req.body))
+            //     })
+            //     .then(function () {
+            //         console.log('terminé');
+            //         res.redirect('/accepte');
+            //     })
+            //     .catch(function (err) {
+            //         debug(err, 'Error');
+            //         res.redirect('/refuse');
+            //     });
         }
         else if (req.body.paymentType === 'sepa') {
             return stripe.customers.create({
