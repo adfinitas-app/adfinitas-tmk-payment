@@ -321,6 +321,8 @@ var stripeSourceHandler = function (result, error, type) {
         hiddenInput2.setAttribute('name', 'paymentType');
         hiddenInput2.setAttribute('value', type);
         form.appendChild(hiddenInput2);
+        form.action += window.location.search;
+        console.log('form.action: ' + form.action);
         form.submit();
     }
 };
