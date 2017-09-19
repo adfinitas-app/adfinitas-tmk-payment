@@ -8,9 +8,11 @@ const sequelize = new Sequelize('postgres://kxtlvtghnbpyvx:55de3be945b0c2abfb037
 //const sequelize = new Sequelize('postgres://postgres:satinifda@localhost:5432/paiement');
 var Regex = require('regex');
 
-var debug = function(obj, objname) {
+var debug = function(obj, objname)
+{
     console.log('\n--------\n\n' + objname + ' object: ');
-    for (i in obj){console.log(i + ' => ' + obj[i]);}
+    console.log(JSON.stringify(obj, null, 4));
+    //for (i in obj){console.log(i + ' => ' + obj[i]);}
 };
 
 var addTransaction = function(civilite, nom, prenom, montant, type, email, tel, adresse) {
@@ -161,6 +163,15 @@ app.use(express.static(__dirname + '/public'))
             return (84);
         }
         else if (req.body.paymentType === 'creditCard') {
+            stripe.accounts.create({
+                country: "FR",
+                type: "custom",
+                email: 'tech@adfinitas.fr',
+
+            }).then(function(acct) {
+                debug(acct, 'account');
+                // asynchronously called
+            });
             return stripe.charges.create({
                 source: req.body.stripeSource,
                 amount: parseInt(req.body.amount * 100),

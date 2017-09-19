@@ -7,6 +7,26 @@ a.paymentOption:hover
     color: red !important;
 }
 
+#btnSubmit {
+    cursor: pointer;
+    border: 1px solid #ec2c22;
+}
+
+#btnSubmit:focus {
+    text-decoration: underline;
+}
+
+#btnSubmit:hover {
+    background-color: #dc1d13 !important;
+    border-color: #dc1d13 !important;
+}
+
+#btnSubmit:active {
+    background-color: white !important;
+    border-color: #ec2c22 !important;
+    color: #ec2c22;
+}
+
 a.paymentOption
 {
     display: inline-block;

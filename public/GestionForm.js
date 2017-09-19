@@ -116,6 +116,23 @@ var PaymentTypeView = Backbone.View.extend({
             });
             $('option#autre').hide();
             $('#beforeText').after('<p style="font-size: .8rem;color: #737273" id="textSepa">En fournissant les coordonnées de votre Numéro de compte bancaire international (« IBAN ») et en confirmant ce paiement, vous autorisez (A) {{ NOM SITE}}, Inc et aussi Stripe, notre prestataire de paiement, à envoyer des instructions à votre banque pour débiter votre compte, et (B) votre banque à débiter votre compte conformément à ces instructions. Vous bénéficiez d’un droit à remboursement par votre banque selon les conditions décrites dans la convention que vous avez passée avec elle. Toute demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte.\n</p>');
+            if ( $('form#paymentForm select[name="amount"] option:selected').attr('id') === 'autre') {
+                $('form#paymentForm select[name="amount"] option').first().prop('selected', true);
+                $('#otherAmount').hide(600, 'swing', function () {
+                    var border = $(this).css('border');
+                    if (border !== '1px solid rgb(202, 202, 202)') {
+                        $('form#paymentForm select[name="amount"]').css('border', border);
+                        if (border === '1px solid rgb(255, 0, 0)') {
+                            $('select[name="amount"]').css('margin-bottom', '0');
+                        }
+                        else {
+                            $('select[name="amount"]').css('margin-bottom', '10px');
+                        }
+                    }
+                    $(this).off('change');
+                    $(this).remove();
+                });
+            }
         }
     },
 
@@ -163,10 +180,10 @@ var PaymentTypeView = Backbone.View.extend({
                             $('select[name="amount"]').css('margin-bottom', '10px');
                         }
                     }
+                    $(this).off('change');
                     this.remove();
                 });
                 // suppression de l'event
-                $('#otherAmount').off('change');
                 //Remise de la valeur du select Autre montant a 'autre'
                 $('select[name="amount"] #autre').attr('value', 'autre');
             }
@@ -358,8 +375,6 @@ var InputValidationView = Backbone.View.extend({
         return Backbone.View.prototype.remove.apply(this, arguments);
     }
 });
-
-var text
 
 $(document).ready(function () {
     var paymentType = new PaymentType();
