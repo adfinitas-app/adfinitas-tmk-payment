@@ -164,6 +164,7 @@ app.use(express.static(__dirname + '/public'))
             return (84);
         }
         else if (req.body.paymentType === 'creditCard') {
+            console.log('QUERY CODE : ' + req.query.code);
             request.post({
                 url: 'https://connect.stripe.com/oauth/token',
                 form: {
