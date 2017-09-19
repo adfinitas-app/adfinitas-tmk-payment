@@ -181,8 +181,6 @@ app.use(express.static(__dirname + '/public'))
                     amount: parseInt(req.body.amount * 100),
                     currency: 'eur',
                     source: response.stripe_user_id,
-                }, {
-                    stripe_account: response.stripe_user_id,
                 }).then(function(charge) {
                     // asynchronously called
                     debug(charge, 'charge')
