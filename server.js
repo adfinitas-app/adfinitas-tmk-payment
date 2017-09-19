@@ -165,7 +165,7 @@ app.use(express.static(__dirname + '/public'))
         }
         else if (req.body.paymentType === 'creditCard') {
             request.post({
-                url: TOKEN_URI,
+                url: 'https://connect.stripe.com/oauth/token',
                 form: {
                     grant_type: 'authorization_code',
                     client_id: 'ca_BNbQ2Q1Lml6ynQtmAckLjRZzvHtW9mkq',
@@ -174,7 +174,8 @@ app.use(express.static(__dirname + '/public'))
                 }
             }, function(err, r, body) {
                 var accessToken = JSON.parse(body).access_token;
-                console.log('accesTokne: ' + accessToken);
+                debug(body, 'body ?');
+                debug(r, 'r ????');
             });
             // stripe.accounts.create({
             //     country: "FR",
