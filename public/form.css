@@ -45,7 +45,7 @@ a.paymentOption
     display: none;
 }
 
-.StripeElement--invalid, .StripeElement--empty, .StripeElement--focus {
+.StripeElement--invalid, .StripeElement--empty, .StripeElement--focus, .StripeElement--valid {
     margin-bottom: 0 !important;
 }
 
