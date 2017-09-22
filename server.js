@@ -121,6 +121,7 @@ var checkError = function (data) {
     if (data.paymentType === 'sepa') {
         if (!data.adresseUne || !data.ville || !data.codePostal || !data.pays)
             return (84);
+        //faire la regex PAYS
         array.push([data.codePostal, /^[0-9]{5,5}?$/, 'code postal']);
         array[0][1] = /^(5|10|15|20|25|30)?$/; // change la regex du montant
         if (data.adresseUne.trim().length === 0)

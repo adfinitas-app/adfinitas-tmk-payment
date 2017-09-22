@@ -43,7 +43,7 @@ var getCode = function(type, model) {
             '                    <span class="help-block hidden"></span>' +
             '                </div>\n' +
             '                <div class="column small-12 medium-4">' +
-            '                    <select name="pays" class=""><option value="pays" disabled selected>Pays</option><option value="DE">Allemagne</option><option value="AT">Autriche</option><option value="BE">Belgique</option><option value="BG">Bulgarie</option><option value="CY">Chypre</option><option value="HR">Croatie</option><option value="DK">Danemark</option><option value="ES">Espagne</option><option value="EE">Estonie</option><option value="FI">Finlande</option><option value="FR">France</option><option value="GR">Grèce</option><option value="HU">Hongrie</option><option value="IE">Irlande</option><option value="IS">Islande</option><option value="IT">Italie</option><option value="LV">Lettonie</option><option value="LI">Liechtenstein</option><option value="LT">Lituanie</option><option value="LU">Luxembourg</option><option value="MT">Malte</option><option value="MC">Monaco</option><option value="NO">Norvège</option><option value="NL">Pays-Bas</option><option value="PL">Pologne</option><option value="PT">Portugal</option><option value="RO">Roumanie</option><option value="GB">Royaume-Uni</option><option value="CZ">République tchèque</option><option value="SM">Saint-Marin</option><option value="SK">Slovaquie</option><option value="SI">Slovénie</option><option value="CH">Suisse</option><option value="SE">Suède</option></select>' +
+            '                    <select name="pays" class=""><option value="pays" selected>Pays</option><option value="DE">Allemagne</option><option value="AT">Autriche</option><option value="BE">Belgique</option><option value="BG">Bulgarie</option><option value="CY">Chypre</option><option value="HR">Croatie</option><option value="DK">Danemark</option><option value="ES">Espagne</option><option value="EE">Estonie</option><option value="FI">Finlande</option><option value="FR">France</option><option value="GR">Grèce</option><option value="HU">Hongrie</option><option value="IE">Irlande</option><option value="IS">Islande</option><option value="IT">Italie</option><option value="LV">Lettonie</option><option value="LI">Liechtenstein</option><option value="LT">Lituanie</option><option value="LU">Luxembourg</option><option value="MT">Malte</option><option value="MC">Monaco</option><option value="NO">Norvège</option><option value="NL">Pays-Bas</option><option value="PL">Pologne</option><option value="PT">Portugal</option><option value="RO">Roumanie</option><option value="GB">Royaume-Uni</option><option value="CZ">République tchèque</option><option value="SM">Saint-Marin</option><option value="SK">Slovaquie</option><option value="SI">Slovénie</option><option value="CH">Suisse</option><option value="SE">Suède</option></select>' +
             '                    <span class="help-block hidden"></span>' +
             '                </div>' +
             '            </div>';
@@ -133,6 +133,7 @@ var PaymentTypeView = Backbone.View.extend({
                     $(this).remove();
                 });
             }
+            $('form#paymentForm select[name="pays"]').val('pays');
         }
     },
 
@@ -361,7 +362,7 @@ var InputValidationView = Backbone.View.extend({
                     },
                     currency: 'eur',
                     owner: {
-                        name: [$('#prenom').val(), $('#nom').val()].join(' '),
+                        name: [$('#prenom').val(), $('#nom').val()].join(' '), //adresse etc ?
                     },
                 }).then(function(result) {
                     stripeSourceHandler(result, 'iban', 'sepa');
