@@ -65,7 +65,7 @@ var addTransaction = function(civilite, nom, prenom, montant, type, email, tel, 
                     freezeTableName: true
                 }
             );
-            transaction.sync({force: true})
+            transaction.sync({})
                 .then(() => {
                     console.log('Synchronisation réussie !');
                     transaction
@@ -82,10 +82,10 @@ var addTransaction = function(civilite, nom, prenom, montant, type, email, tel, 
                         .save()
                 })
                 .then(anotherTask => {
-                    console.log('Correctly added transaction to database.');
+
                 })
                 .catch(error => {
-                    console.log('Erreur de synchronisation: ' + error);
+                    console.log('Error: ' + error);
                 });
         })
         .catch(err => {
@@ -122,7 +122,7 @@ var checkError = function (data) {
         if (!data.adresseUne || !data.ville || !data.codePostal || !data.pays)
             return (84);
         array.push([data.codePostal, /^[0-9]{5,5}?$/, 'code postal']);
-        array[0][1] = /^(5|10|15|20|25|30)?$/; // change la regex
+        array[0][1] = /^(5|10|15|20|25|30)?$/; // change la regex du montant
         if (data.adresseUne.trim().length === 0)
             stringError += "'" + 'adresseUne' + "' ; ";
         if (data.ville.trim().length === 0)
@@ -164,29 +164,57 @@ app.use(express.static(__dirname + '/public'))
             return (84);
         }
         else if (req.body.paymentType === 'creditCard') {
-            console.log('QUERY CODE : ' + req.query.code);
-            request.post({
-                url: 'https://connect.stripe.com/oauth/token',
-                form: {
-                    grant_type: 'authorization_code',
-                    client_id: 'ca_BNbQ2Q1Lml6ynQtmAckLjRZzvHtW9mkq',
-                    code: req.query.code,
-                    client_secret: 'sk_test_laxl5BP0TNodFtPrFaBsrKZm'
-                }
-            }, function(err, r, response) {
-                var accessToken = JSON.parse(response).access_token;
-                console.log('ACCESS TOKEN:' + accessToken);
-                debug(response, 'reponse');
-                stripe.charges.create({
-                    amount: parseInt(req.body.amount * 100),
-                    currency: 'eur',
-                    source: response.stripe_user_id,
-                }).then(function(charge) {
-                    // asynchronously called
-                    debug(charge, 'charge')
-                    res.redirect('/accepte');
-                });
-            });
+            // console.log('QUERY CODE : ' + req.query.code);
+            // return stripe.accounts.create({
+            //     country: 'FR',
+            //     type: 'custom',
+            //     email: req.body.email,
+            //     legal_entity : {
+            //         first_name: req.body.prenom,
+            //         last_name: req.body.nom,
+            //         type: 'individual',
+            //     },
+            // }).then(function (account) {
+            //     debug(account, 'account');
+            //     return stripe.charges.create({
+            //         amount: parseInt(req.body.amount * 100),
+            //         currency: 'eur',
+            //         source: 'tok_visa',
+            //     }, {
+            //         stripe_account: account.id,
+            //     })
+            // }).then(function (charge) {
+            //     debug(charge, 'charge');
+            //     res.redirect('/accepte');
+            // }).catch(function (error) {
+            //     debug(error, 'error');
+            //     res.redirect('/refuse');
+            // });
+            // request.post({
+            //     url: 'https://connect.stripe.com/oauth/token',
+            //     form: {
+            //         grant_type: 'authorization_code',
+            //         client_id: 'ca_BNbQ2Q1Lml6ynQtmAckLjRZzvHtW9mkq',
+            //         code: req.query.code,
+            //         client_secret: 'sk_test_laxl5BP0TNodFtPrFaBsrKZm'
+            //     }
+            // }, function(err, r, response) {
+            //     var accessToken = JSON.parse(response).access_token;
+            //     console.log('ACCESS TOKEN:' + accessToken);
+            //     debug(response, 'reponse');
+            //     stripe.charges.create({
+            //         amount: parseInt(req.body.amount * 100),
+            //         currency: 'eur',
+            //         source: response.stripe_user_id,
+            //     }).then(function(charge) {
+            //         // asynchronously called
+            //         debug(charge, 'charge')
+            //         res.redirect('/accepte');
+            //     });
+            // });
+
+
+
             // stripe.accounts.create({
             //     country: "FR",
             //     type: "custom",
@@ -196,22 +224,22 @@ app.use(express.static(__dirname + '/public'))
             //     debug(acct, 'account');
             //     // asynchronously called
             // });
-            // return stripe.charges.create({
-            //     source: req.body.stripeSource,
-            //     amount: parseInt(req.body.amount * 100),
-            //     currency: 'eur'
-            // })
-            //     .then(function () {
-            //         addTransaction(req.body.civilite, req.body.nom, req.body.prenom, req.body.amount, 'creditCard', req.body.email, req.body.tel, makeAdress(req.body))
-            //     })
-            //     .then(function () {
-            //         console.log('terminé');
-            //         res.redirect('/accepte');
-            //     })
-            //     .catch(function (err) {
-            //         debug(err, 'Error');
-            //         res.redirect('/refuse');
-            //     });
+            return stripe.charges.create({
+                source: req.body.stripeSource,
+                amount: parseInt(req.body.amount * 100),
+                currency: 'eur'
+            })
+                .then(function () {
+                    addTransaction(req.body.civilite, req.body.nom, req.body.prenom, req.body.amount, 'creditCard', req.body.email, req.body.tel, makeAdress(req.body))
+                })
+                .then(function () {
+                    console.log('terminé');
+                    res.redirect('/accepte');
+                })
+                .catch(function (err) {
+                    debug(err, 'Error');
+                    res.redirect('/refuse');
+                });
         }
         else if (req.body.paymentType === 'sepa') {
             return stripe.customers.create({

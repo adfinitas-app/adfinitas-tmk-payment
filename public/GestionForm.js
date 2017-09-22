@@ -2,7 +2,7 @@ var stripe = Stripe('pk_test_UjvXyhdpMKpOEtP71vxFF2Ub');
 
 var createCard = function() {
     var elements = stripe.elements();
-    var card = elements.create('card');
+    var card = elements.create('card', {hidePostalCode: true});
     card.mount('#cardElement');
     return (card);
 };
@@ -321,8 +321,6 @@ var stripeSourceHandler = function (result, error, type) {
         hiddenInput2.setAttribute('name', 'paymentType');
         hiddenInput2.setAttribute('value', type);
         form.appendChild(hiddenInput2);
-        form.action += window.location.search;
-        console.log('form.action: ' + form.action);
         form.submit();
     }
 };
