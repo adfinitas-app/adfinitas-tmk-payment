@@ -27,26 +27,26 @@ var PaymentType = Backbone.Model.extend({
 var getCode = function(type, model) {
     if (type === 'sepa') {
         return '<input type="text" name="iban" placeholder="Numéro de compte IBAN" id="iban">' +
-            '<span class="help-block hidden"></span>' +
-            '<div id="ibanError" style="margin-bottom: 10px;"></div>' +
-            '<input type="text" name="adresseUne" id="adresseUne" placeholder="Adresse" class="">' +
-            '            <span class="help-block hidden"></span>' +
-            '            <input type="text" name="adresseDeux" id="adresseDeux" placeholder="Adresse (suite) - optionnel" class="">' +
-            '            <span class="help-block hidden"></span>' +
-            '            <div class="row">' +
-            '                <div class="column small-12 medium-4">' +
-            '                    <input type="text" name="ville" id="ville" placeholder="Ville" class="">' +
-            '                    <span class="help-block hidden"></span>' +
-            '                </div>' +
-            '                <div class="column small-12 medium-4">' +
-            '                    <input type="text" name="codePostal" id="codePostal" placeholder="Code postal" class="">' +
-            '                    <span class="help-block hidden"></span>' +
-            '                </div>\n' +
-            '                <div class="column small-12 medium-4">' +
-            '                    <select name="pays" class=""><option value="pays" selected>Pays</option><option value="DE">Allemagne</option><option value="AT">Autriche</option><option value="BE">Belgique</option><option value="BG">Bulgarie</option><option value="CY">Chypre</option><option value="HR">Croatie</option><option value="DK">Danemark</option><option value="ES">Espagne</option><option value="EE">Estonie</option><option value="FI">Finlande</option><option value="FR">France</option><option value="GR">Grèce</option><option value="HU">Hongrie</option><option value="IE">Irlande</option><option value="IS">Islande</option><option value="IT">Italie</option><option value="LV">Lettonie</option><option value="LI">Liechtenstein</option><option value="LT">Lituanie</option><option value="LU">Luxembourg</option><option value="MT">Malte</option><option value="MC">Monaco</option><option value="NO">Norvège</option><option value="NL">Pays-Bas</option><option value="PL">Pologne</option><option value="PT">Portugal</option><option value="RO">Roumanie</option><option value="GB">Royaume-Uni</option><option value="CZ">République tchèque</option><option value="SM">Saint-Marin</option><option value="SK">Slovaquie</option><option value="SI">Slovénie</option><option value="CH">Suisse</option><option value="SE">Suède</option></select>' +
-            '                    <span class="help-block hidden"></span>' +
-            '                </div>' +
-            '            </div>';
+        '<span class="help-block hidden"></span>' +
+        '<div id="ibanError" style="margin-bottom: 10px;"></div>' +
+        '<input type="text" name="adresseUne" id="adresseUne" placeholder="Adresse" class="">' +
+        '            <span class="help-block hidden"></span>' +
+        '            <input type="text" name="adresseDeux" id="adresseDeux" placeholder="Adresse (suite) - optionnel" class="">' +
+        '            <span class="help-block hidden"></span>' +
+        '            <div class="row">' +
+        '                <div class="column small-12 medium-4">' +
+        '                    <input type="text" name="ville" id="ville" placeholder="Ville" class="">' +
+        '                    <span class="help-block hidden"></span>' +
+        '                </div>' +
+        '                <div class="column small-12 medium-4">' +
+        '                    <input type="text" name="codePostal" id="codePostal" placeholder="Code postal" class="">' +
+        '                    <span class="help-block hidden"></span>' +
+        '                </div>\n' +
+        '                <div class="column small-12 medium-4">' +
+        '                    <select name="pays" class=""><option value="pays" selected>Pays</option><option value="DE">Allemagne</option><option value="AT">Autriche</option><option value="BE">Belgique</option><option value="BG">Bulgarie</option><option value="CY">Chypre</option><option value="HR">Croatie</option><option value="DK">Danemark</option><option value="ES">Espagne</option><option value="EE">Estonie</option><option value="FI">Finlande</option><option value="FR">France</option><option value="GR">Grèce</option><option value="HU">Hongrie</option><option value="IE">Irlande</option><option value="IS">Islande</option><option value="IT">Italie</option><option value="LV">Lettonie</option><option value="LI">Liechtenstein</option><option value="LT">Lituanie</option><option value="LU">Luxembourg</option><option value="MT">Malte</option><option value="MC">Monaco</option><option value="NO">Norvège</option><option value="NL">Pays-Bas</option><option value="PL">Pologne</option><option value="PT">Portugal</option><option value="RO">Roumanie</option><option value="GB">Royaume-Uni</option><option value="CZ">République tchèque</option><option value="SM">Saint-Marin</option><option value="SK">Slovaquie</option><option value="SI">Slovénie</option><option value="CH">Suisse</option><option value="SE">Suède</option></select>' +
+        '                    <span class="help-block hidden"></span>' +
+        '                </div>' +
+        '            </div>';
     }
     else
         return model.getDefault();
@@ -145,7 +145,7 @@ var PaymentTypeView = Backbone.View.extend({
             if (this[this.selectedIndex].id === 'autre' && otherAmount.length === 0) {
                 // insertion de l'input text Autre montant en dessous du select avec effet
                 $('<input type="text" name="otherAmount" id="otherAmount" placeholder="Veuillez indiquer votre montant" style="display: none;">')
-                    .insertAfter(this).show(500, function() {
+                .insertAfter(this).show(500, function() {
                     //placement du curseur sur l'input text Autre montant
                     this.focus();
                     // on recupere la bordure du select pour savoir si il y a une erreur ou pas
@@ -256,20 +256,24 @@ var InputValidationModel = Backbone.Model.extend({
             },
             msg: 'Veuillez entrer votre ville.'
         },
-        codePostal: {
+        codePostal: [{
             required: function () {
                 return $('#cardElement').length > 0 ? false : true;
             },
-            pattern: /^[0-9]{5,5}?$/,
+            msg: 'Veuillez entrer un code postal.'
+        }, {
+            pattern: /^[0-9]{5,5}?$/,   
             msg: 'Veuillez entrer un code postal valide.'
-        },
-        pays: {
+        }],
+        pays: [{
             required: function () {
                 return $('#cardElement').length > 0 ? false : true;
             },
+            msg: 'Veuillez choisir un pays.'
+        }, {
             oneOf: ['DE', 'AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'ES', 'EE', 'FI', 'FR', 'GR', 'HU', 'IS', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'MC', 'NO', 'NL', 'PL', 'PT', 'RO', 'GB', 'CZ', 'SM', 'SK', 'SI', 'CH', 'SE'],
-            msg: 'Veuillez entrer un pays valide.'
-        },
+            msg: 'Veuillez choisir un pays valide.'
+        }],
         tel: {
             required: false,
             pattern: /^(0|\+33|0033)[1-9][0-9]{8}?$/,
