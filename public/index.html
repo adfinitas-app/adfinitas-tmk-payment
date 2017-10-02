@@ -107,7 +107,7 @@
 <script src="/js/gestionForm.js"></script>
 <script>
     $(document).ready(function() {
-        var socket = io.connect('http://localhost:8080');
+        var socket = io.connect('https://adfinitas-tmk-payment.herokuapp.com/');
 
             socket.on('paymentError', function() {
                 console.log('received paymentError');
@@ -121,7 +121,7 @@
 
             socket.on('paymentSuccess', function() {
                 console.log('received paymentSuccess');
-                $('#paymentSuccess').css('top', '200px').slideDown("slow", function() {
+                $('#paymentSuccess').slideDown("slow", function() {
                     setTimeout(function(){
                         $('.notification').slideUp("slow");
                     }, 5000);

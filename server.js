@@ -1,14 +1,12 @@
 var stripe = require("stripe")("sk_test_laxl5BP0TNodFtPrFaBsrKZm");
 var express = require('express');
 var app = express();
-//var request = require('request');
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-//var urlEncoded = bodyParser.urlencoded({ extended: true });
 const Sequelize = require('sequelize');
-//const sequelize = new Sequelize('postgres://kxtlvtghnbpyvx:55de3be945b0c2abfb037eb79147c7df0981c260b2a8b80836a4efab12db6c25@ec2-54-75-227-173.eu-west-1.compute.amazonaws.com:5432/ded0orheosck9p');
-const sequelize = new Sequelize('postgres://postgres:satinifda@localhost:5432/paiement');
+const sequelize = new Sequelize('postgres://kxtlvtghnbpyvx:55de3be945b0c2abfb037eb79147c7df0981c260b2a8b80836a4efab12db6c25@ec2-54-75-227-173.eu-west-1.compute.amazonaws.com:5432/ded0orheosck9p');
+//const sequelize = new Sequelize('postgres://postgres:satinifda@localhost:5432/paiement');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var Regex = require('regex');
