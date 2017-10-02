@@ -8,13 +8,14 @@
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
     "regex": "^0.1.1",
-    "request": "^2.81.0",
     "sequelize": "^4.8.0",
     "stripe": "^4.24.1"
   },
   "description": "sepa / cb payment form",
   "main": "server.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "socket.io": "^2.0.3"
+  },
   "scripts": {
     "test": "npm start"
   },

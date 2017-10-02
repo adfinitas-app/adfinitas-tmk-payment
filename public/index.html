@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Adfinitas tmk payment</title>
-    <link rel="stylesheet" href="form.css">
-    <link rel="stylesheet" href="foundation.min.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/foundation.min.css">
 </head>
 <body>
 <div class="row">
     <div class="column small-12 medium-8 large-6 small-centered">
-        <form action="/" method="post" id="paymentForm">
+        <form action="/" method="post" id="paymentForm" enctype="application/x-www-form-urlencoded">
             <p style="font-weight: bold;">Choisissez le montant de votre don:</p>
             <select name="amount">
                 <option value="select" selected disabled>Selectionner un montant</option>
@@ -48,41 +48,47 @@
             <input type="tel" placeholder="Numéro de téléphone - optionnel" class="" id="tel" name="tel">
             <span class="help-block hidden"></span>
             <button type="button" id="btnSubmit" class="font-bold" style="margin-bottom: 10px;background-color: #ec2c22; border-radius: 7px;padding: 13px 5px;width: 200px;">Soutenez nous</button>
+            <div id="paymentError">
+                <p style="color: red;">Paiement refusé !</p>
+            </div>
+            <div id="paymentSuccess">
+                <p style="color: green;">Paiement accepté !</p>
+            </div>
             <p style="font-size: .8rem;color: #737273" id="beforeText">Paiement sécurisé géré par <a href="https://www.stripe.com" style="color: inherit;text-decoration: underline;">Stripe</a>.</p>
             <p style="font-size: .8rem;color: #737273">En soutenant {{ URL }}, vous acceptez nos <a href="#" style="color: inherit;text-decoration: underline;">termes d'utilisation</a> et notre <a href="#" style="text-decoration: underline;color: inherit;">politique de confidentialité</a>, et vous acceptez de recevoir de temps en temps des e-mails à propos des pétitions sur {{ NOM SITE }}. Vous pouvez vous désinscrire à tout moment.</p>
         </form>
     </div>
 </div>
-    <script>
-        function extractUrlParams(){
-            var t = document.location.search.substring(1).split('&'); var f = [];
-            for (var i=0; i<t.length; i++){
-                var x = t[ i ].split('=');
-                f[x[0]]=decodeURIComponent(x[1]);
-            }
-            return f;
-        };
-        (function(){
-            var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identify","visit","push","call","trackForm","trackClick"],c=function(){var t,i=this;for(i._e=[],t=0;r.length>t;t++)(function(t){i[t]=function(){return i._e.push([t].concat(Array.prototype.slice.call(arguments,0))),i}})(r[t])};for(n._w=n._w||{},t=0;a.length>t;t++)n._w[a[t]]=n[a[t]]=n[a[t]]||new c;i=o.createElement(s),i.async=1,i.src="//static.woopra.com/js/w.js",e=o.getElementsByTagName(s)[0],e.parentNode.insertBefore(i,e)
-        })("woopra");
-        woopra.config({
-            domain: 'adfinitas.fr'
-        });
-        var p = extractUrlParams();
-        if ('email' in p) {
-            if ('lastname' in p && 'firstname' in p) {
-                woopra.identify({
-                    email: p['email'],
-                    name: p['firstname'] + ' ' + p['lastname']
-                });
-            } else {woopra.identify({email: p['email']})}
+<script>
+    function extractUrlParams(){
+        var t = document.location.search.substring(1).split('&'); var f = [];
+        for (var i=0; i<t.length; i++){
+            var x = t[ i ].split('=');
+            f[x[0]]=decodeURIComponent(x[1]);
         }
-        woopra.track();
-    </script>
+        return f;
+    };
+    (function(){
+        var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identify","visit","push","call","trackForm","trackClick"],c=function(){var t,i=this;for(i._e=[],t=0;r.length>t;t++)(function(t){i[t]=function(){return i._e.push([t].concat(Array.prototype.slice.call(arguments,0))),i}})(r[t])};for(n._w=n._w||{},t=0;a.length>t;t++)n._w[a[t]]=n[a[t]]=n[a[t]]||new c;i=o.createElement(s),i.async=1,i.src="//static.woopra.com/js/w.js",e=o.getElementsByTagName(s)[0],e.parentNode.insertBefore(i,e)
+    })("woopra");
+    woopra.config({
+        domain: 'adfinitas.fr'
+    });
+    var p = extractUrlParams();
+    if ('email' in p) {
+        if ('lastname' in p && 'firstname' in p) {
+            woopra.identify({
+                email: p['email'],
+                name: p['firstname'] + ' ' + p['lastname']
+            });
+        } else {woopra.identify({email: p['email']})}
+    }
+    woopra.track();
+</script>
 <script type="text/template" id="paymentTemplate">
     <div style="border-bottom: 1px solid lightgrey;margin-bottom: 20px;">
-    <a href="#" id="btnPonctuel" class="paymentOption" data-payment-type="creditCard" style="margin-right: 27px;">Carte bancaire</a>
-    <a href="#" id="btnMensuel" class="paymentOption" data-payment-type="sepa">ou prélèvement bancaire</a>
+        <a href="#" id="btnPonctuel" class="paymentOption" data-payment-type="creditCard" style="margin-right: 27px;">Carte bancaire</a>
+        <a href="#" id="btnMensuel" class="paymentOption" data-payment-type="sepa">ou prélèvement bancaire</a>
     </div>
     <%= html %>
 </script>
@@ -93,13 +99,37 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
-<script src="/backboneValidation.js"></script>
-<!--<script src="clickEvent.js"></script>-->
-<!--<script src="checkValidityEvent.js"></script>-->
-<script src="/what-input.js"></script>
-<script src="/foundation.min.js"></script>
-<script src="/app.js"></script>
-<script src="/GestionForm.js"></script>
-<!--<script src="/submitEvent.js"></script>-->
+<script src="/js/backboneValidation.js"></script>
+<script src="/js/what-input.js"></script>
+<script src="/js/foundation.min.js"></script>
+<script src="/js/app.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/gestionForm.js"></script>
+<script>
+    $(document).ready(function() {
+        var socket = io.connect('http://localhost:8080');
+
+            socket.on('paymentError', function() {
+                console.log('received paymentError');
+                $('#paymentError').slideDown("slow", function() {
+                    setTimeout(function(){
+                        $('.notification').slideUp("slow");
+                    }, 5000);
+                });
+
+            });
+
+            socket.on('paymentSuccess', function() {
+                console.log('received paymentSuccess');
+                $('#paymentSuccess').css('top', '200px').slideDown("slow", function() {
+                    setTimeout(function(){
+                        $('.notification').slideUp("slow");
+                    }, 5000);
+                });
+
+            });
+
+    });
+</script>
 </body>
 </html>

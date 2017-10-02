@@ -1,0 +1,70 @@
+body {
+    font-family: Helvetica Neue, Helvetica, Arial;
+}
+
+a.paymentOption:hover
+{
+    color: red !important;
+}
+
+#btnSubmit {
+    cursor: pointer;
+    border: 1px solid #ec2c22;
+}
+
+#btnSubmit:focus {
+    text-decoration: underline;
+}
+
+#btnSubmit:hover {
+    background-color: #dc1d13 !important;
+    border-color: #dc1d13 !important;
+}
+
+#btnSubmit:active {
+    background-color: white !important;
+    border-color: #ec2c22 !important;
+    color: #ec2c22;
+}
+
+a.paymentOption
+{
+    display: inline-block;
+    color: inherit;
+    padding: 8px 0;
+}
+
+#paymentForm
+{
+    border: 1px solid lightgray;
+    padding: 20px;
+    background-color: #f6f4f6;
+}
+
+.help-block {
+    display: none;
+}
+
+.StripeElement, .StripeElement--invalid, .StripeElement--empty, .StripeElement--focus, .StripeElement--complete {
+    margin-bottom: 0 !important;
+}
+
+.StripeElement--focus
+{
+    outline: 0 !important;
+    border: 1px solid #8a8a8a !important;
+    background-color: #fefefe !important;
+    box-shadow: 0 0 5px #cacaca !important;
+    transition: box-shadow .5s,border-color .25s ease-in-out !important;
+    color :red !important;
+}
+
+button {
+    color: white;
+}
+
+#paymentError, #paymentSuccess {
+    font-weight: bold;
+    display: none;
+    text-align: center;
+}
