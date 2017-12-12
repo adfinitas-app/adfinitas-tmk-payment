@@ -25,7 +25,7 @@ Deux modes de paiement sont disponibles:
 ## CONFIGURATION SETTINGS {#configuration-settings}
 
 Exemple de fichier de configuration:
-
+````JSON
 {
 	"WRAPPER_JQ_SELECTOR"	:	"#view",
 	"UNIQUE_DONATION"		: {
@@ -41,6 +41,7 @@ Exemple de fichier de configuration:
 	"URL"					: "{{ ADFINITAS.FR }}",
 	"SITE_NAME"				: "{{ ADFINITAS }}"
 }
+````
 
 WRAPPER_JQ_SELECTOR: Selecteur jQuery de la balise où sera inséré le formulaire
 UNIQUE_DONATION -> AMOUNT_X: Montant à afficher pour le mode de paiement unique (2300 = 23€)
