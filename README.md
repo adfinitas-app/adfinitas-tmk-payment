@@ -43,7 +43,7 @@ Exemple de fichier de configuration:
 }
 ````
 
-WRAPPER_JQ_SELECTOR: Selecteur jQuery de la balise où sera inséré le formulaire
+WRAPPER_JQ_SELECTOR: Selecteur jQuery de la balise où sera inséré le formulaire<br>
 UNIQUE_DONATION -> AMOUNT_X: Montant à afficher pour le mode de paiement unique (2300 = 23€)
 MONTHLY_DONATION -> AMOUNT_X: Montant à afficher pour le mode de paiement mensuel
 URL -> URL à mentionner dans le footer
