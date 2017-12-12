@@ -20,9 +20,9 @@ Deux modes de paiement sont disponibles:
 <script src="/socket.io/socket.io.js" type="text/javascript"></script>
 <script src="assets/js/main.js" type="text/javascript"></script>
 ````
-2. Configurer le fichier settings.cfg (cf [Configuration Settings](#configuration-settings))
+2. Configurer le fichier settings.cfg (cf. [Configuration Settings](#configuration-settings))
 
-3. Configurer les templates du formulaire (cf [Configuration Templates](#configuration-templates))
+3. Configurer les templates du formulaire (cf. [Configuration Templates](#configuration-templates))
 
 ## CONFIGURATION SETTINGS
 
@@ -61,4 +61,4 @@ Le formulaire est découpé en plusieurs layouts :
 * Le type de paiement : [paymentType.template](http://google.fr)  
 * Le footer : [footer.template](http://google.fr)  
 
-Afin d'améliorer l'expérience du visiteur, il est nécessaire que les balises d'entrées (input, select) aient la classe 'field' et aient une balise parente ayant la classe 'input-container'
+Afin d'améliorer l'expérience du visiteur, il est nécessaire que les balises d'entrées (input, select) aient la classe ```field``` et aient une balise parente ayant la classe ```input-container```
