@@ -30,7 +30,7 @@ Deux modes de paiement sont disponibles:
 Exemple de fichier de configuration:
 ````JSON
 {
-	"WRAPPER_JQ_SELECTOR"	: "#view",
+	"WRAPPER_JQ_SELECTOR"		: "#view",
 	"UNIQUE_DONATION"		: {
 		"AMOUNT_1"	: "2300",
 		"AMOUNT_2"	: "1500",
