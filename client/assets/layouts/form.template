@@ -1,0 +1,22 @@
+<section template-container style="text-align: center;">
+	<form action="/" method="post" id="paymentForm">
+		<!-- REGION HEADER -->
+		<div id="headerRegion">
+
+		</div>
+		<!-- REGION FIELDS -->
+		<div id="fieldsRegion">
+
+		</div>
+		<!-- REGION PAYMENT-TYPE -->
+		<div id="paymentTypeRegion">
+
+		</div>
+		<p id="paymentStatus"><span class="loader"></span>Paiement en cours...</p>
+		<button type="button" id="btnSubmit" class="font-bold">Soutenez nous</button>
+		<!-- REGION FOOTER -->
+		<div id="footerRegion">
+
+		</div>
+	</form>
+</section>

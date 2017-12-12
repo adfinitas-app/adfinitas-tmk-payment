@@ -1,24 +1,28 @@
 {
-  "name": "payment-form",
+  "name": "adfinitas-tmk-payment",
   "version": "1.0.0",
-  "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.4",
-    "heroku": "^0.2.0",
-    "pg": "^7.3.0",
-    "pg-hstore": "^2.3.2",
-    "regex": "^0.1.1",
-    "sequelize": "^4.8.0",
-    "stripe": "^4.24.1"
-  },
-  "description": "sepa / cb payment form",
-  "main": "server.js",
-  "devDependencies": {
-    "socket.io": "^2.0.3"
-  },
+  "description": "Adfinitas-tmk-payment app - stripe",
+  "main": "server",
   "scripts": {
-    "test": "npm start"
+    "test": "echo test",
+    "start": "cd server && node server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/adfinitas-tmk-payment.git"
+  },
+  "keywords": [
+    "Adfinitas",
+    "stripe",
+    "payment",
+    "form"
+  ],
+  "author": "Adfinitas dev team",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "socket-io": "^1.0.0",
+    "stripe": "^5.4.0"
+  }
 }
