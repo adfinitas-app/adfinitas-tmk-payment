@@ -1,7 +1,7 @@
 # Adfinitas-tmk-payment
 ## Présentation
 
-Cette application sert à intégrer un formulaire de paiement en ligne personnalisable sur une page.
+Cette application permet d'intégrer un formulaire de paiement en ligne personnalisable sur une page.
 
 Deux modes de paiement sont disponibles:
 * [Unique](http://google.fr)  
@@ -20,6 +20,7 @@ Deux modes de paiement sont disponibles:
 <script src="/socket.io/socket.io.js" type="text/javascript"></script>
 <script src="assets/js/main.js" type="text/javascript"></script>
 ````
+Voir : [Exemple d'index.html](client/index.html)
 2. Configurer le fichier settings.cfg (cf. [Configuration Settings](#configuration-settings))
 
 3. Configurer les templates du formulaire (cf. [Configuration Templates](#configuration-templates))
