@@ -61,4 +61,6 @@ Le formulaire est découpé en plusieurs layouts :
 * Le type de paiement : [paymentType.template](client/assets/layouts/paymentType.template)  
 * Le footer : [footer.template](client/assets/layouts/footer.template)
 
-Afin d'améliorer l'expérience du visiteur, il est nécessaire que les balises d'entrées (input, select) aient la classe ```field``` et aient une balise parente ayant la classe ```input-container```
+
+Afin d'améliorer l'expérience du visiteur, il est nécessaire que les balises d'entrées (input, select) aient la classe ```field``` et aient une balise parente ayant la classe ```input-container```.
+Cela permet de vérifier la validité des entrées en temps réel.
