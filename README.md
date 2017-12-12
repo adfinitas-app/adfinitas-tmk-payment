@@ -41,8 +41,8 @@ Exemple de fichier de configuration:
 		"AMOUNT_2"	: "1000",
 		"AMOUNT_3"	: "2800"
 	},
-	"URL"					: "{{ ADFINITAS.FR }}",
-	"SITE_NAME"				: "{{ ADFINITAS }}"
+	"URL"				: "{{ ADFINITAS.FR }}",
+	"SITE_NAME"			: "{{ ADFINITAS }}"
 }
 ````
 
