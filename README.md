@@ -22,6 +22,8 @@ Deux modes de paiement sont disponibles:
 ````
 2. Configurer le fichier settings.cfg (cf [Configuration Settings](#configuration-settings))
 
+3. Configurer les templates du formulaire (cf [Configuration Templates](#configuration-templates))
+
 ## CONFIGURATION SETTINGS
 
 Exemple de fichier de configuration:
@@ -48,3 +50,15 @@ UNIQUE_DONATION -> AMOUNT_X: Montant à afficher pour le mode de paiement unique
 MONTHLY_DONATION -> AMOUNT_X: Montant à afficher pour le mode de paiement mensuel <br/>
 URL -> URL à mentionner dans le footer <br/>
 SITE_NAME -> Nom du site à mentionner dans le footer <br/>
+
+## CONFIGURATION TEMPLATES
+
+Le formulaire est découpé en plusieurs layouts :
+
+* La base : [form.template](http://google.fr)
+* Le Header : [header.template](http://google.fr)  
+* Les champs : [fields.template](http://google.fr)  
+* Le type de paiement : [paymentType.template](http://google.fr)  
+* Le footer : [footer.template](http://google.fr)  
+
+Afin d'améliorer l'expérience du visiteur, il est nécessaire que les balises d'entrées (input, select) aient la classe 'field' et aient une balise parente ayant la classe 'input-container'
