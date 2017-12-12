@@ -1,0 +1,29 @@
+{
+  "name": "adfinitas-tmk-payment",
+  "version": "1.0.0",
+  "description": "Adfinitas-tmk-payment app - stripe",
+  "main": "server",
+  "scripts": {
+    "test": "echo test",
+    "start": "cd server && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/adfinitas-tmk-payment.git"
+  },
+  "keywords": [
+    "Adfinitas",
+    "stripe",
+    "payment",
+    "form"
+  ],
+  "author": "Adfinitas dev team",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "socket-io": "^1.0.0",
+    "socket.io": "^2.0.4",
+    "stripe": "^5.4.0"
+  }
+}
