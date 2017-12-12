@@ -22,7 +22,7 @@ Deux modes de paiement sont disponibles:
 ````
 2. Configurer le fichier settings.cfg (cf [Configuration Settings](#configuration-settings))
 
-## CONFIGURATION SETTINGS {#configuration-settings}
+## CONFIGURATION SETTINGS
 
 Exemple de fichier de configuration:
 ````JSON
@@ -44,7 +44,7 @@ Exemple de fichier de configuration:
 ````
 
 WRAPPER_JQ_SELECTOR: Selecteur jQuery de la balise où sera inséré le formulaire <br/>
-UNIQUE_DONATION -> AMOUNT_X: Montant à afficher pour le mode de paiement unique (2300 = 23€) <br/>
+UNIQUE_DONATION -> AMOUNT_X: Montant à afficher pour le mode de paiement unique (2300 = 23.00€) <br/>
 MONTHLY_DONATION -> AMOUNT_X: Montant à afficher pour le mode de paiement mensuel <br/>
 URL -> URL à mentionner dans le footer <br/>
 SITE_NAME -> Nom du site à mentionner dans le footer <br/>
