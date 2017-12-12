@@ -46,7 +46,7 @@ Exemple de fichier de configuration:
 }
 ````
 
-```WRAPPER_JQ_SELECTOR```: Selecteur jQuery de la balise où sera inséré le formulaire <br/>
+```WRAPPER_JQ_SELECTOR```: Selecteur jQuery de la balise où sera inséré le formulaire <br/>j
 ```UNIQUE_DONATION -> AMOUNT_X```: Montant à afficher pour le mode de paiement unique (2300 = 23.00€) <br/>
 ```MONTHLY_DONATION -> AMOUNT_X```: Montant à afficher pour le mode de paiement mensuel <br/>
 ```URL```: URL à mentionner dans le footer <br/>
@@ -54,7 +54,7 @@ Exemple de fichier de configuration:
 
 ## CONFIGURATION TEMPLATES
 
-Le formulaire est découpé en plusieurs layouts :
+Le formulaire est découpé en plusieurs parties :
 
 * La base : [form.template](client/assets/layouts/form.template)
 * Le header : [header.template](client/assets/layouts/header.template)  
