@@ -55,10 +55,10 @@ Exemple de fichier de configuration:
 
 Le formulaire est découpé en plusieurs layouts :
 
-* La base : [form.template](http://google.fr)
-* Le header : [header.template](http://google.fr)  
-* Les champs : [fields.template](http://google.fr)  
-* Le type de paiement : [paymentType.template](http://google.fr)  
-* Le footer : [footer.template](http://google.fr)  
+* La base : [form.template](client/assets/layouts/form.template)
+* Le header : [header.template](client/assets/layouts/header.template)  
+* Les champs : [fields.template](client/assets/layouts/fields.template)  
+* Le type de paiement : [paymentType.template](client/assets/layouts/paymentType.template)  
+* Le footer : [footer.template](client/assets/layouts/footer.template)
 
 Afin d'améliorer l'expérience du visiteur, il est nécessaire que les balises d'entrées (input, select) aient la classe ```field``` et aient une balise parente ayant la classe ```input-container```
