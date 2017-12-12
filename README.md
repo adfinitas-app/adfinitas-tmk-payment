@@ -30,7 +30,7 @@ Deux modes de paiement sont disponibles:
 Exemple de fichier de configuration:
 ````JSON
 {
-	"WRAPPER_JQ_SELECTOR"	:	"#view",
+	"WRAPPER_JQ_SELECTOR"	:		"#view",
 	"UNIQUE_DONATION"		: {
 		"AMOUNT_1"	: "2300",
 		"AMOUNT_2"	: "1500",
@@ -41,8 +41,8 @@ Exemple de fichier de configuration:
 		"AMOUNT_2"	: "1000",
 		"AMOUNT_3"	: "2800"
 	},
-	"URL"				: "{{ ADFINITAS.FR }}",
-	"SITE_NAME"			: "{{ ADFINITAS }}"
+	"URL"					: "{{ ADFINITAS.FR }}",
+	"SITE_NAME"				: "{{ ADFINITAS }}"
 }
 ````
 
