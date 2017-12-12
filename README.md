@@ -11,7 +11,7 @@ Deux modes de paiement sont disponibles:
 
 ###### Ajouter le formulaire à un site
 
-1. Inclure les 6 scripts dans votre page (à la fin de la balise ```<body>``` par soucis d'optimisation):
+1. Inclure les 6 scripts dans votre page à la fin de la balise ```<body>``` par soucis d'optimisation (voir un exemple d'[index.html](client/assets/index.html)):
 ````html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" type="text/javascript"></script>
 <script src="assets/js/libs.min.js" type="text/javascript"></script>
@@ -20,7 +20,7 @@ Deux modes de paiement sont disponibles:
 <script src="/socket.io/socket.io.js" type="text/javascript"></script>
 <script src="assets/js/main.js" type="text/javascript"></script>
 ````
-<p>Voir : [Exemple d'index.html](client/index.html)</p>
+
 2. Configurer le fichier settings.cfg (cf. [Configuration Settings](#configuration-settings))
 
 3. Configurer les templates du formulaire (cf. [Configuration Templates](#configuration-templates))
