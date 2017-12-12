@@ -1,7 +1,7 @@
 <div template-container>
-<p id="payment-secure">
-	Paiement sécurisé géré par <a href="https://www.stripe.com" style="color: inherit;text-decoration: underline;">Stripe</a>
-	<br /><br />
-	En soutenant <%= URL %>, vous acceptez nos <a href="#" style="color: inherit;text-decoration: underline;">termes d'utilisation</a> et notre <a href="#" style="text-decoration: underline;color: inherit;">politique de confidentialité</a>, et vous acceptez de recevoir de temps en temps des e-mails à propos des pétitions sur <%= SITE_NAME %> . Vous pouvez vous désinscrire à tout moment.
-</p>
+	<p id="payment-secure">
+		Paiement sécurisé géré par <a href="https://www.stripe.com" style="color: inherit;text-decoration: underline;">Stripe</a>
+		<br /><br />
+		En soutenant <%= URL %>, vous acceptez nos <a href="#" style="color: inherit;text-decoration: underline;">termes d'utilisation</a> et notre <a href="#" style="text-decoration: underline;color: inherit;">politique de confidentialité</a>, et vous acceptez de recevoir de temps en temps des e-mails à propos des pétitions sur <%= SITE_NAME %> . Vous pouvez vous désinscrire à tout moment.
+	</p>
 </div>

@@ -1,19 +1,19 @@
 <div template-container>
-<p id="paymentOptionP"><a href="#" class="paymentOption active" type="UNIQUE_DONATION">Votre don par carte bancaire</a> | <a href="#" class="paymentOption" type="MONTHLY_DONATION">Votre soutien mensuel par prélèvement bancaire</a></p>
-<div>
-<label for="amount-1">
-<input type="radio" value="<%= AMOUNT_1 %>" id="amount-1" name="amount"/><span><%= AMOUNT_1 %></span> €
-</label>
-</div>
-<div>
-<label for="amount-2">
-<input type="radio" value="<%= AMOUNT_2 %>" id="amount-2" name="amount" checked/><span><%= AMOUNT_2 %></span> €
-</label>
-</div>
-<div>
-<label for="amount-3">
-<input type="radio" value="<%= AMOUNT_3 %>" id="amount-3" name="amount"/><span><%= AMOUNT_3 %></span> €
-</label>
-</div>
-<%= AUTRE %>
+	<p id="paymentOptionP"><a href="#" class="paymentOption active" type="UNIQUE_DONATION">Votre don par carte bancaire</a> | <a href="#" class="paymentOption" type="MONTHLY_DONATION">Votre soutien mensuel par prélèvement bancaire</a></p>
+	<div>
+		<label for="amount-1">
+			<input type="radio" value="<%= AMOUNT_1 %>" id="amount-1" name="amount"/><span><%= AMOUNT_1 %></span> €
+		</label>
+	</div>
+	<div>
+		<label for="amount-2">
+			<input type="radio" value="<%= AMOUNT_2 %>" id="amount-2" name="amount" checked/><span><%= AMOUNT_2 %></span> €
+		</label>
+	</div>
+	<div>
+		<label for="amount-3">
+			<input type="radio" value="<%= AMOUNT_3 %>" id="amount-3" name="amount"/><span><%= AMOUNT_3 %></span> €
+		</label>
+	</div>
+	<%= AUTRE %>
 </div>
