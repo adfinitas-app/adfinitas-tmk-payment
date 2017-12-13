@@ -5,7 +5,7 @@ Cette application permet d'intégrer un formulaire de paiement en ligne personna
 
 Deux modes de paiement sont disponibles:
 * <b>Unique</b>  
-* <b>mensuel</b>  
+* <b>mensuel</b>   
 
 ## CONFIGURATION GÉNÉRALE
 
