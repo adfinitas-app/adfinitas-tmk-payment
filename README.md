@@ -4,8 +4,8 @@
 Cette application permet d'intégrer un formulaire de paiement en ligne personnalisable sur une page.
 
 Deux modes de paiement sont disponibles:
-* [Unique](http://google.fr)  
-* [Mensuel](http://google.fr)  
+* <b>Unique</b>  
+* <b>mensuel</b>  
 
 ## CONFIGURATION GÉNÉRALE
 
@@ -46,8 +46,8 @@ Exemple de fichier de configuration:
 }
 ````
 
-```WRAPPER_JQ_SELECTOR```: Selecteur jQuery de la balise où sera inséré le formulaire <br/>j
-```UNIQUE_DONATION -> AMOUNT_X```: Montant à afficher pour le mode de paiement <b>unique</b>(2300 = 23.00€) <br/>
+```WRAPPER_JQ_SELECTOR```: Selecteur jQuery de la balise où sera inséré le formulaire <br/>
+```UNIQUE_DONATION -> AMOUNT_X```: Montant à afficher pour le mode de paiement <b>unique</b> (2300 = 23.00€) <br/>
 ```MONTHLY_DONATION -> AMOUNT_X```: Montant à afficher pour le mode de paiement <b>mensuel</b> <br/>
 ```URL```: URL à mentionner dans le footer <br/>
 ```SITE_NAME```: Nom du site à mentionner dans le footer <br/>
@@ -66,4 +66,4 @@ Le formulaire est découpé en plusieurs parties :
 Afin d'améliorer l'expérience du visiteur, il est nécessaire que les balises d'entrées (input, select) aient la classe ```field``` et aient une balise parente ayant la classe ```input-container```.
 Cela permet de vérifier la validité des entrées en temps réel.
 
-A venir: Ajouter/retirer des champs
+A venir: Ajouter / retirer des champs
