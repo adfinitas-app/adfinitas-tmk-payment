@@ -11,7 +11,7 @@ Deux modes de paiement sont disponibles:
 
 ###### Ajouter le formulaire à un site
 
-1. Inclure les 6 scripts dans votre page à la fin de la balise ```<body>``` par soucis d'optimisation (voir un [exemple d'index.html](client/index.html)):
+1. Inclure les 6 scripts dans votre page à la fin de la balise ```<body>``` par soucis d'optimisation ainsi que liens vers les fichier css à la fin de la balise ```head``` (voir un [exemple d'index.html](client/index.html)):
 ````html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" type="text/javascript"></script>
 <script src="assets/js/libs.min.js" type="text/javascript"></script>
@@ -19,6 +19,12 @@ Deux modes de paiement sont disponibles:
 <script src="assets/js/validateForm.js" type="text/javascript"></script>
 <script src="/socket.io/socket.io.js" type="text/javascript"></script>
 <script src="assets/js/main.js" type="text/javascript"></script>
+````
+
+````html
+<link rel="stylesheet" type="text/css" title="stylesheet" href="assets/css/intlTelInput.css" />
+	<link rel="stylesheet" type="text/css" title="stylesheet" href="assets/css/foundation.min.css" />
+	<link rel="stylesheet" type="text/css" title="stylesheet" href="assets/css/form.css" />
 ````
 
 2. Configurer le fichier settings.cfg (cf. [Configuration Settings](#configuration-settings))
