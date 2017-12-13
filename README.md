@@ -68,6 +68,7 @@ Le formulaire est découpé en plusieurs parties :
 * Le type de paiement : [paymentType.template](client/assets/layouts/paymentType.template)  
 * Le footer : [footer.template](client/assets/layouts/footer.template)
 
+<img src="./doc/doc-schema.png" alt="Documentation" />
 Pour modifier le code HTML du formulaire, il faut modifier ces fichiers.
 
 Afin d'améliorer l'expérience du visiteur, il est nécessaire que les balises d'entrées (input, select) aient la classe ```field``` et aient une balise parente ayant la classe ```input-container```.
