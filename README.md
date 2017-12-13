@@ -53,8 +53,8 @@ Exemple de fichier de configuration:
 ````
 
 ```WRAPPER_JQ_SELECTOR```: Selecteur jQuery de la balise où sera inséré le formulaire <br/>
-```UNIQUE_DONATION -> AMOUNT_X```: Montant à afficher sur les équivalences de dons pour le mode de paiement <b>unique</b> (2300 = 23.00€) <br/>
-```MONTHLY_DONATION -> AMOUNT_X```: Montant à afficher sur les équivalences de dons pour le mode de paiement <b>mensuel</b> <br/>
+```UNIQUE_DONATION -> AMOUNT_X```: Montant à afficher pour le mode de paiement <b>unique</b> (2300 = 23.00€) <br/>
+```MONTHLY_DONATION -> AMOUNT_X```: Montant à afficher pour le mode de paiement <b>mensuel</b> <br/>
 ```URL```: URL à mentionner dans le footer <br/>
 ```SITE_NAME```: Nom du site à mentionner dans le footer <br/>
 
