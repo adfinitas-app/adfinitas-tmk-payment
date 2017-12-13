@@ -23,8 +23,8 @@ Deux modes de paiement sont disponibles:
 
 ````html
 <link rel="stylesheet" type="text/css" title="stylesheet" href="assets/css/intlTelInput.css" />
-	<link rel="stylesheet" type="text/css" title="stylesheet" href="assets/css/foundation.min.css" />
-	<link rel="stylesheet" type="text/css" title="stylesheet" href="assets/css/form.css" />
+<link rel="stylesheet" type="text/css" title="stylesheet" href="assets/css/foundation.min.css" />
+<link rel="stylesheet" type="text/css" title="stylesheet" href="assets/css/form.css" />
 ````
 
 2. Configurer le fichier settings.cfg (cf. [Configuration Settings](#configuration-settings))
