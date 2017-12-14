@@ -58,6 +58,7 @@ Exemple de fichier de configuration:
 ```URL```: URL à mentionner dans le footer <br/>
 ```SITE_NAME```: Nom du site à mentionner dans le footer <br/>
 
+/!\ Les plans d'abonnements doivent être créés à l'avance sur le tableau de bord de Stripe avec les montants indiqués dans ce fichier de configuration. /!\
 ## CONFIGURATION TEMPLATES
 
 Le formulaire est découpé en plusieurs parties :
