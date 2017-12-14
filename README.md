@@ -108,9 +108,9 @@ var data = {
 }
 ````
 Légende:
-* Selector: Selecteur jQuery du champs.
-* BorderSelector: Selecteur jQuery du conteneur du champs, celui qui aurales bordures indiqué le status de validité.
-* Required: Si le champs est obligatoire, mettre sa valeur a { message : "Votre message d'erreur"}, sinon s'il est optionnel, mettre undefined.
-* Pattern: Regex a tester lors de la validation. si il n'y a pas de regex, peut être défini a undefined
+* ```Selector:``` Selecteur jQuery du champs.
+* ```BorderSelector:``` Selecteur jQuery du conteneur du champs, celui qui aurales bordures indiqué le status de validité.
+* ```Required:``` Si le champs est obligatoire, mettre sa valeur a { message : "Votre message d'erreur"}, sinon s'il est optionnel, mettre undefined.
+* ```Pattern:``` Regex a tester lors de la validation. si il n'y a pas de regex, peut être défini a undefined
 * extra = fonction permettant de tester ce que l'on souhaite, elle prend en paramètre la valeur du champs, elle retourne true en cas de succès et false en cas d'erreur. Peut être undefined
 A venir: Ajouter / retirer des champs
