@@ -107,7 +107,6 @@ var data = {
 	}
 }
 ````
-Légende:
 * ```Selector:``` Selecteur jQuery du champs.
 * ```BorderSelector:``` Selecteur jQuery du conteneur du champs, celui qui aurales bordures indiqué le status de validité.
 * ```Required:``` Si le champs est obligatoire, mettre sa valeur à ```{ message : "Votre message d'erreur"}```. Peut être défini à undefined.
