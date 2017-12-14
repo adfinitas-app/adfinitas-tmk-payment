@@ -89,7 +89,7 @@ Ajouter un objet javascript dans la variable data dans la fonction getDataValida
 var data = {
 	field_name	: {
 		selector		: $('input[name="field_name"]'),
-		borderSelector	: $('input[name="field_name"]').closest('.input-container'),
+		borderSelector		: $('input[name="field_name"]').closest('.input-container'),
 		required		: {
 			message: 'Veuillez entrer un field_name'
 		},
