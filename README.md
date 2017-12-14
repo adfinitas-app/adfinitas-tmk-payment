@@ -74,16 +74,16 @@ Pour modifier le code HTML du formulaire, il faut modifier ces fichiers.
 Afin d'améliorer l'expérience du visiteur, il est nécessaire que les balises d'entrées (input, select) aient la classe ```field``` et aient une balise parente ayant la classe ```input-container```.
 Cela permet de vérifier la validité des entrées en temps réel.
 
-## AJOUTER UN CHAMPS
+## AJOUTER UN CHAMP
 
-1. Insérez le code html du champs sous cette forme dans un des templates :
+1. Insérez le code html du champ sous cette forme dans un des templates :
 ````html
 <div class="input-container">
 	<input type="Your type" name="Your_field_name" placeholder="Your placeholder"  class="field"/>
 </div>
 ````
 
-2. Ajouter les conditions de validations du champs:
+2. Ajouter les conditions de validations du champ:
 Ajouter un objet javascript dans la variable data dans la fonction getDataValidation du fichier [validateForm.js](client/assets/js/validateForm.js) sous cette forme:
 ````javascript
 var data = {
@@ -108,8 +108,8 @@ var data = {
 }
 ````
 Valeurs possibles:
-* ```selector:``` Selecteur jQuery du champs a ajouter.
-* ```borderSelector:``` Selecteur jQuery du conteneur du champs a ajouter.
-* ```required:``` Si le champs optionnel : ```undefined``` sinon : ```{message: "Votre message d'erreur"}```
+* ```selector:``` Selecteur jQuery du champ a ajouter.
+* ```borderSelector:``` Selecteur jQuery du conteneur du champ a ajouter.
+* ```required:``` Si le champ optionnel : ```undefined``` sinon : ```{message: "Votre message d'erreur"}```
 * ```pattern:``` Regex a tester lors de la validation. Si la valeur attendu à un format spécial, mettre la regex correspondante à ce format, sinon mettre ```undefined```
-* ```extra:``` Fonction permettant de définir des conditions de validation personnalisées. La fonction prend en paramètre la valeur du champs, elle retourne true en cas de succès et false en cas d'erreur. Peut être défini à undefined.
+* ```extra:``` Fonction permettant de définir des conditions de validation personnalisées. La fonction prend en paramètre la valeur du champ, elle retourne true en cas de succès et false en cas d'erreur. Peut être défini à undefined.
