@@ -74,4 +74,43 @@ Pour modifier le code HTML du formulaire, il faut modifier ces fichiers.
 Afin d'améliorer l'expérience du visiteur, il est nécessaire que les balises d'entrées (input, select) aient la classe ```field``` et aient une balise parente ayant la classe ```input-container```.
 Cela permet de vérifier la validité des entrées en temps réel.
 
+## AJOUTER UN CHAMPS
+
+1. Insérez le code html du champs sous cette forme :
+````html
+<div class="input-container">
+	<input type="Your type" name="Your_field_name" placeholder="Your placeholder"  class="field"/>
+</div>
+````
+
+2. Ajouter les conditions de validations du champs:
+Ajouter un objet javascript dans la variable data dans la fonction getDataValidation sous cette forme:
+````javascript
+var data = {
+	field_name		: {
+		selector		: $('input[name="field_name"]'),
+		borderSelector	: $('input[name="field_name"]').closest('.input-container'),
+		required		: {
+			message: 'Veuillez entrer un field_name'
+		},
+		pattern: {
+			regex: /^(Hello|World)$/,
+			message: 'Veuillez entrer un field_name valide.'
+		},
+		extra: function (value) {
+			if (value < 0) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}
+}
+````
+Légende:
+* Selector: Selecteur jQuery du champs.
+* BorderSelector: Selecteur jQuery du conteneur du champs, celui qui aurales bordures indiqué le status de validité.
+* Required: Si le champs est obligatoire, mettre sa valeur a { message : "Votre message d'erreur"}, sinon s'il est optionnel, mettre undefined.
+* Pattern: Regex a tester lors de la validation. si il n'y a pas de regex, peut être défini a undefined
+* extra = fonction permettant de tester ce que l'on souhaite, elle prend en paramètre la valeur du champs, elle retourne true en cas de succès et false en cas d'erreur. Peut être undefined
 A venir: Ajouter / retirer des champs
