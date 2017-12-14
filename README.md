@@ -84,20 +84,20 @@ Cela permet de vérifier la validité des entrées en temps réel.
 ````
 
 2. Ajouter les conditions de validations du champs:
-Ajouter un objet javascript dans la variable data dans la fonction getDataValidation sous cette forme:
+Ajouter un objet javascript dans la variable data dans la fonction getDataValidation sous cette forme dans un des templates:
 ````javascript
 var data = {
-	field_name		: {
-		selector		: $('input[name="field_name"]'),
+	field_name	: {
+		selector	: $('input[name="field_name"]'),
 		borderSelector	: $('input[name="field_name"]').closest('.input-container'),
-		required		: {
+		required	: {
 			message: 'Veuillez entrer un field_name'
 		},
-		pattern: {
+		pattern	: {
 			regex: /^(Hello|World)$/,
 			message: 'Veuillez entrer un field_name valide.'
 		},
-		extra: function (value) {
+		extra	: function (value) {
 			if (value < 0) {
 				return false;
 			} else {
@@ -110,7 +110,7 @@ var data = {
 Légende:
 * ```Selector:``` Selecteur jQuery du champs.
 * ```BorderSelector:``` Selecteur jQuery du conteneur du champs, celui qui aurales bordures indiqué le status de validité.
-* ```Required:``` Si le champs est obligatoire, mettre sa valeur a { message : "Votre message d'erreur"}, sinon s'il est optionnel, mettre undefined.
+* ```Required:``` Si le champs est obligatoire, mettre sa valeur à { message : "Votre message d'erreur"}, sinon s'il est optionnel, mettre undefined.
 * ```Pattern:``` Regex a tester lors de la validation. si il n'y a pas de regex, peut être défini a undefined
-* ```extra:``` fonction permettant de tester ce que l'on souhaite, elle prend en paramètre la valeur du champs, elle retourne true en cas de succès et false en cas d'erreur. Peut être undefined
+* ```extra:``` fonction permettant de tester ce que l'on souhaite, elle prend en paramètre la valeur du champs, elle retourne true en cas de succès et false en cas d'erreur.
 A venir: Ajouter / retirer des champs
