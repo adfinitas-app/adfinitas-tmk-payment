@@ -76,7 +76,7 @@ Cela permet de vérifier la validité des entrées en temps réel.
 
 ## AJOUTER UN CHAMPS
 
-1. Insérez le code html du champs sous cette forme :
+1. Insérez le code html du champs sous cette forme dans un des templates :
 ````html
 <div class="input-container">
 	<input type="Your type" name="Your_field_name" placeholder="Your placeholder"  class="field"/>
@@ -84,7 +84,7 @@ Cela permet de vérifier la validité des entrées en temps réel.
 ````
 
 2. Ajouter les conditions de validations du champs:
-Ajouter un objet javascript dans la variable data dans la fonction getDataValidation sous cette forme dans un des templates:
+Ajouter un objet javascript dans la variable data dans la fonction getDataValidation du fichier [validateForm.js](client/assets/js/validateForm.js) sous cette forme:
 ````javascript
 var data = {
 	field_name	: {
@@ -110,7 +110,6 @@ var data = {
 Légende:
 * ```Selector:``` Selecteur jQuery du champs.
 * ```BorderSelector:``` Selecteur jQuery du conteneur du champs, celui qui aurales bordures indiqué le status de validité.
-* ```Required:``` Si le champs est obligatoire, mettre sa valeur à { message : "Votre message d'erreur"}, sinon s'il est optionnel, mettre undefined.
-* ```Pattern:``` Regex a tester lors de la validation. si il n'y a pas de regex, peut être défini a undefined
-* ```extra:``` fonction permettant de tester ce que l'on souhaite, elle prend en paramètre la valeur du champs, elle retourne true en cas de succès et false en cas d'erreur.
-A venir: Ajouter / retirer des champs
+* ```Required:``` Si le champs est obligatoire, mettre sa valeur à ```{ message : "Votre message d'erreur"}```. Peut être défini à undefined.
+* ```Pattern:``` Regex a tester lors de la validation. si il n'y a pas de regex. Peut être défini à undefined
+* ```extra:``` fonction permettant de tester ce que l'on souhaite, elle prend en paramètre la valeur du champs, elle retourne true en cas de succès et false en cas d'erreur. Peut être défini à undefined.
