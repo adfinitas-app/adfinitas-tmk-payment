@@ -111,6 +111,6 @@ var data = {
 Valeurs possibles:
 * ```selector:``` Selecteur jQuery du champ a ajouter.
 * ```borderSelector:``` Selecteur jQuery du conteneur du champ a ajouter.
-* ```required:``` Si le champ optionnel : ```undefined``` sinon : ```{message: "Votre message d'erreur"}```
+* ```required:``` Si le champ est optionnel : ```undefined``` sinon : ```{message: "Votre message d'erreur"}```
 * ```pattern:``` Regex a tester lors de la validation. Si la valeur attendu à un format spécial, mettre la regex correspondante à ce format, sinon mettre ```undefined```
 * ```extra:``` Fonction permettant de définir des conditions de validation personnalisées. La fonction prend en paramètre la valeur du champ, elle retourne true en cas de succès et false en cas d'erreur. Peut être défini à undefined.
