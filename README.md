@@ -93,11 +93,11 @@ var data = {
 		required		: {
 			message: 'Veuillez entrer un field_name'
 		},
-		pattern		: {
+		pattern			: {
 			regex: /^(Hello|World)$/,
 			message: 'Veuillez entrer un field_name valide.'
 		},
-		extra		: function (value) {
+			extra		: function (value) {
 			if (value < 0) {
 				return false;
 			} else {
