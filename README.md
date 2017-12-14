@@ -88,16 +88,16 @@ Ajouter un objet javascript dans la variable data dans la fonction getDataValida
 ````javascript
 var data = {
 	field_name	: {
-		selector	: $('input[name="field_name"]'),
+		selector		: $('input[name="field_name"]'),
 		borderSelector	: $('input[name="field_name"]').closest('.input-container'),
-		required	: {
+		required		: {
 			message: 'Veuillez entrer un field_name'
 		},
-		pattern	: {
+		pattern		: {
 			regex: /^(Hello|World)$/,
 			message: 'Veuillez entrer un field_name valide.'
 		},
-		extra	: function (value) {
+		extra		: function (value) {
 			if (value < 0) {
 				return false;
 			} else {
