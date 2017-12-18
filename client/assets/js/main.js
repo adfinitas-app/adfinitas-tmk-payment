@@ -29,7 +29,7 @@ var site = {
 					site.fillOutForm();
 					site.formatTel();
 					passiveFormValidation();
-					var socket = io.connect('http://localhost:8080');
+					var socket = io.connect(settings.APP_URL);
 
 					socket.on('paymentError', function() {
 						console.log('received paymentError');
@@ -238,7 +238,8 @@ var site = {
 				template	: _.template(template.paymentType),
 				events		: {
 					'click .paymentOption'		: 'updateModel',
-					'click #amount-other-text'	: 'fixOtherAmount'
+					'click #amount-other-text'	: 'fixOtherAmount',
+					'click #amount-other'		: 'focusInputText'
 				},
 				modelEvents	: {
 					'change:type':	'myRender'
@@ -282,6 +283,9 @@ var site = {
 						$('#amount-other').attr('value', $(this).val() );
 					});
 				},
+				focusInputText: function () {
+					$('#amount-other-text').focus();
+				}
 			})
 		);
 	},
