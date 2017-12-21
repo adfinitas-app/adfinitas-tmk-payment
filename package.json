@@ -24,5 +24,10 @@
     "express": "^4.16.2",
     "socket.io": "^2.0.4",
     "stripe": "^5.4.0"
+  },
+  "dependencies": {
+    "node-mailjet": "^3.2.1",
+    "randomstring": "^1.1.5",
+    "sequelize": "^4.28.6"
   }
 }
