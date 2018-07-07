@@ -71,7 +71,6 @@ requires.app
 			requires.stripe.charges.create({
 				source: req.body.stripeSource,
 				amount: parseInt(req.body.amount * 100),
-				receipt_email: req.body.email,
 				metadata: {
 					email: req.body.email,
 					civility: req.body.civility,
@@ -84,7 +83,8 @@ requires.app
 					country: req.body.country,
 					phone: req.body.phone
 				},
-				currency: 'eur'
+				currency: 'eur',
+				receipt_email: req.body.email
 			})
 			.then(function () {
 				//add bdd
