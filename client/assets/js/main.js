@@ -1,6 +1,6 @@
 var site = {
 	settings			: {},
-	stripe				: Stripe('pk_test_UjvXyhdpMKpOEtP71vxFF2Ub'),
+	stripe				: Stripe('pk_test_Z55r5B5tPTiP36UUSJiJftze'),
 	creditCard			: {},
 
 	getSettings			: function() {
