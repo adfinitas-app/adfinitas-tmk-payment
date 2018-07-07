@@ -13,7 +13,7 @@
 
 		</div>
 		<p id="paymentStatus"><span class="loader"></span>Paiement en cours...</p>
-		<button type="button" id="btnSubmit" class="font-bold">Soutenez nous</button>
+		<button type="button" id="btnSubmit" class="font-bold">Je valide mon don</button>
 		<!-- REGION FOOTER -->
 		<div id="footerRegion">
 

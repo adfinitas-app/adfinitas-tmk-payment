@@ -70,7 +70,7 @@ form#paymentForm .paymentOption.active
 
 form#paymentForm .paymentOption:hover
 {
-	color: #ec2c22;
+	color: #3c1848;
 }
 
 form#paymentForm #paymentOptionP
@@ -178,4 +178,4 @@ form#paymentForm #paymentStatus
 }
 
 /* Customisation couleur association */
-.title{color:#3c1848;font-family:"Rubik";font-size: 200%;text-align: center;display: inline-block;width: 50%;}
+.title{color:#3c1848;font-family:"Rubik";font-size: 200%;text-align: center;display: inline-block;width: 50%;text-transform: uppercase;font-weight: bold}
