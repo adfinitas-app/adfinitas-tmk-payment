@@ -71,7 +71,18 @@ requires.app
 			requires.stripe.charges.create({
 				source: req.body.stripeSource,
 				amount: parseInt(req.body.amount * 100),
-				metadata: {email: req.body.email},
+				metadata: {
+					email: req.body.email,
+					civility: req.body.civility,
+					firstname: req.body.firstname,
+					lastname: req.body.lastname,
+					address1: req.body.address1,
+					address2: req.body.address2,
+					postalcode: req.body.postalcode,
+					city: req.body.city,
+					country: req.body.country,
+					phone: req.body.phone
+				},
 				currency: 'eur'
 			})
 			.then(function () {

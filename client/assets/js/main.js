@@ -33,12 +33,12 @@ var site = {
 
 					socket.on('paymentError', function() {
 						console.log('received paymentError');
-						$('#paymentStatus').html('Paiement refusé !').css('color', 'red');
+						$('#paymentStatus').html('Votre don a été refusé. Contactez-nous par email asso@lesenfantsdelaballe.fr').css('color', 'red');
 					});
 
 					socket.on('paymentSuccess', function() {
 						console.log('received paymentSuccess');
-						$('#paymentStatus').html('Paiement accepté !').css('color', 'green');
+						$('#paymentStatus').html('Votre don a été accepté et enregistré avec succès. Merci').css('color', 'green');
 					});
 				});
 		});

@@ -1,5 +1,8 @@
 <div template-container>
-	<p><a href="<%= URL %>"><img src="assets/img/logo-mauve.jpg" width="125"/></a></p>
+	<p>
+	<span><a href="<%= URL %>"><img src="assets/img/logo-mauve.jpg" width="250"/></a></span>
+	<span>Je fais un don</span>
+	</p>
 	<p><b>Vos coordonnées</b></p>
-	<p>Votre soutien ouvre droit à une réduction fiscale de 66% si vous êtes soumis à l'impôt</p>
+	<p>Votre soutien ouvre droit à une réduction fiscale de 66% si vous êtes soumis à l'impôt, à hauteur de 20% de votre revenu imposable</p>
 </div>

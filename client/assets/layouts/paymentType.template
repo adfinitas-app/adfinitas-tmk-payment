@@ -1,5 +1,8 @@
 <div template-container>
-	<p id="paymentOptionP"><a href="#" class="paymentOption active" type="UNIQUE_DONATION">Votre don par carte bancaire</a> | <a href="#" class="paymentOption" type="MONTHLY_DONATION">Votre soutien mensuel par prélèvement bancaire</a></p>
+	<p id="paymentOptionP">
+	<a href="#" class="paymentOption active" type="UNIQUE_DONATION">Votre don unique par carte bancaire</a>
+	<!-- | <a href="#" class="paymentOption" type="MONTHLY_DONATION">Votre soutien mensuel par prélèvement bancaire</a> -->
+	</p>
 	<div>
 		<label for="amount-1">
 			<input type="radio" value="<%= AMOUNT_1 %>" id="amount-1" name="amount"/><span><%= AMOUNT_1 %></span> €
