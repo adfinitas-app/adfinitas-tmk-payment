@@ -10,9 +10,9 @@ form#paymentForm {
 
 form#paymentForm #btnSubmit {
     cursor: pointer;
-    border: 1px solid #ec2c22;
+    border: 1px solid #3c1848;
 	margin-bottom: 10px;
-	background-color: #ec2c22;
+	background-color: #3c1848;
 	border-radius: 7px;
 	padding: 13px 5px;
 	width: 200px;
@@ -25,8 +25,8 @@ form#paymentForm #btnSubmit:focus {
 }
 
 form#paymentForm #btnSubmit:hover {
-    background-color: #dc1d13 !important;
-    border-color: #dc1d13 !important;
+    background-color: #3c1850 !important;
+    border-color: #3c1850 !important;
 }
 
 form#paymentForm #btnSubmit:active {
@@ -63,8 +63,8 @@ form#paymentForm .paymentOption
 form#paymentForm .paymentOption.active
 {
 	font-weight: bold;
-	border-bottom: 2px solid #ec2c22;
-	color: #ec2c22;
+	border-bottom: 2px solid #3c1848;
+	color: #3c1848;
 	padding-bottom: 5px;
 }
 
@@ -176,3 +176,6 @@ form#paymentForm #paymentStatus
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
 }
+
+/* Customisation couleur association */
+.title{color:#3c1848;font-family:"Rubik";font-size: 200%;text-align: center;display: inline-block;width: 50%;}
