@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var stripe = require("stripe")("sk_test_laxl5BP0TNodFtPrFaBsrKZm");
+var stripe = require("stripe")("sk_test_GW8YMaqcNjDqBlERvv0ldyRE");
 
 // necessary to receive data from form
 app.use(bodyParser.urlencoded({ extended: true }));

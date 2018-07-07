@@ -2,6 +2,8 @@
 	<p id="payment-secure">
 		Paiement sécurisé géré par <a href="https://www.stripe.com" style="color: inherit;text-decoration: underline;">Stripe</a>
 		<br /><br />
-		En soutenant <%= URL %>, vous acceptez nos <a href="#" style="color: inherit;text-decoration: underline;">termes d'utilisation</a> et notre <a href="#" style="text-decoration: underline;color: inherit;">politique de confidentialité</a>, et vous acceptez de recevoir de temps en temps des e-mails à propos des pétitions sur <%= SITE_NAME %> . Vous pouvez vous désinscrire à tout moment.
+		Page de paiement développée avec bonne humeur par <a href="https://www.adfinitas.fr" style="color: inherit;text-decoration: underline;">adfinitas, révélateur d'engagement</a>
+		<br /><br />
+		<% SITE_NAME %>, responsable de traitement, met en œuvre un traitement de données à caractère personnel vous concernant ayant pour finalité la gestion des dons, et plus généralement la gestion des relations avec ses donateurs et prospects (historique de la relation, campagnes de communication et de sollicitations,…). Ces données sont destinées à l'association <% SITE_NAME %>. Conformément aux dispositions applicables en matière de protection des données à caractère personnel, vous bénéficiez d’un droit d’interrogation, d’accès, de rectification et de suppression de vos données, ainsi que d’un droit d’opposition (au traitement de vos données, ainsi qu’à la prospection notamment commerciale) et du droit de définir des directives relatives au sort de vos données et à la manière dont vous souhaitez que vos droits soient exercés après votre décès. Ces droits s’exercent par courrier électronique ou postal accompagné d’une copie d’un justificatif d’identité signé à asso@lesenfantsdelaballe.org ou Les enfants de la balle – 94/2 rue de l'herrengrie, maison 2 – 59700 Marcq-en-Baroeul. Vous pouvez également nous envoyer un email : asso@lesenfantsdelaballe.org
 	</p>
 </div>

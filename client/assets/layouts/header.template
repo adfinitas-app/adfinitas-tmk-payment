@@ -1,4 +1,5 @@
 <div template-container>
+	<p><a href="<% URL %>"><img src="assets/img/logo-mauve.jpg" width="125"/></a></p>
 	<p><b>Vos coordonnées</b></p>
 	<p>Votre soutien ouvre droit à une réduction fiscale de 66% si vous êtes soumis à l'impôt</p>
 </div>
