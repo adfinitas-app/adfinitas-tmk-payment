@@ -101,7 +101,32 @@ requires.app
 			});
 		}
 
+		if (req.body.paymentType === 'regular_cb') {
+			requires.stripe.customers.create({
+				email: req.body.email,
+				source: req.body.stripeSource,
+			})
+			.then(function () {
+				requires.stripe.subscriptions.create({
+					customer: customer.id,
+					items: [
+						{
+							plan: parseInt(req.body.amount) + '_GIFT',
+						},
+					],
+				});
+			})
+			.then(function () {
 
+				req.app.io.emit('paymentSuccess');
+				res.sendStatus(200);
+			})
+			.catch(function (err) {
+				console.log(JSON.stringify(err, null, 4));
+				req.app.io.emit('paymentError');
+				res.sendStatus(200);
+			});
+		}
 
 		 else if (req.body.paymentType === 'monthly') {
 			requires.stripe.customers.create({

@@ -1,6 +1,7 @@
 <div template-container>
 	<p id="paymentOptionP">
 	<a href="#" class="paymentOption active" type="UNIQUE_DONATION">Votre don unique par carte bancaire</a>
+| <a href="#" class="paymentOption" type="REGULAR_DONATION_CB">Votre soutien mensuel par carte bancaire</a>
 	<!-- | <a href="#" class="paymentOption" type="MONTHLY_DONATION">Votre soutien mensuel par prélèvement bancaire</a> -->
 	</p>
 	<div>
