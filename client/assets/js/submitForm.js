@@ -57,27 +57,7 @@ function submitForm() {
 				console.log('stop sending: error with card');
 			}
 		});
-	else if ($('.paymentOption.active').attr('type') === 'REGULAR_DONATION_CB') {
-		site.stripe.createSource(creditCard).then(function (result) {
-			if (stripeSourceHandler(result, 'stripeCard', 'regular_cb')) {
-				//continue sending
-				showPaymentStatus();
-				console.log('continue sending');
-				var form = document.getElementById('paymentForm');
-				var fd = new FormData(form);
-				var data = {};
-				for (var p of fd) {data[p[0]] = p[1];}
-				$.ajax({
-					url: '/',
-					data: JSON.stringify(data),
-					processData: false,
-					contentType: 'application/json',
-					type: 'POST'
-				});
-			} else {
-				console.log('stop sending: error with card');
-			}
-		});
+	
 	} else {
 		site.stripe.createSource({
 			type: 'sepa_debit',
